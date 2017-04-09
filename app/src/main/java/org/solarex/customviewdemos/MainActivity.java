@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import org.solarex.customviewdemos.impl.Adapter;
 import org.solarex.customviewdemos.impl.Model;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClickListener {
+    private static final String TAG = "Solarex";
     private RecyclerView mRecyclerView;
 
     @Override
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
         }
 
         ArrayList<Model> models = getData(path);
+        Log.d(TAG, "initData | path = " + path + ",models = " + models);
         Adapter adapter = new Adapter(models, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
 
     @Override
     public void onClick(Intent intent) {
+        Log.d(TAG, "onClick | intent = " + intent);
         startActivity(intent);
     }
 
@@ -87,19 +91,19 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
             CharSequence labelSequence = info.loadLabel(pm);
             String label = labelSequence != null ? labelSequence.toString() : info.activityInfo
                     .name;
-
             if (pathWithSlash.length() == 0 || label.startsWith(pathWithSlash)) {
                 String[] labelPath = label.split("/");
                 String nextLabel = prefixPath == null ? labelPath[0] : labelPath[prefixPath.length];
 
                 int prefixLen = prefixPath != null ? prefixPath.length : 0;
-
+                Log.d(TAG, "getData | nextLabel = " + nextLabel + ",prefixLen = " + prefixLen);
                 if (prefixLen == labelPath.length - 1) {
                     addItem(mModels, nextLabel, activityIntent(info.activityInfo.applicationInfo
                             .packageName, info.activityInfo.name));
                 } else {
                     if (entries.get(nextLabel) == null) {
-                        addItem(mModels, nextLabel, browserIntent(path.equals("")?nextLabel:path+"/"+nextLabel));
+                        addItem(mModels, nextLabel, browserIntent(path.equals("") ? nextLabel :
+                                path + "/" + nextLabel));
                         entries.put(nextLabel, true);
                     }
                 }
@@ -115,13 +119,14 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
     private static final Comparator<Model> sDispalyNameComparator = new Comparator<Model>() {
 
         private final Collator mCollator = Collator.getInstance();
+
         @Override
         public int compare(Model o1, Model o2) {
             return mCollator.compare(o1.getTitle(), o2.getTitle());
         }
     };
 
-    private Intent activityIntent(String pkg, String componentName){
+    private Intent activityIntent(String pkg, String componentName) {
         Intent intent = new Intent();
         intent.setClassName(pkg, componentName);
         return intent;
@@ -130,12 +135,15 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
     private Intent browserIntent(String path) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-        intent.putExtra("solarex.intent.category.customview", path);
+        Log.d(TAG, "browserIntent | path = " + path);
+        intent.putExtra("solarex_custom_view_path", path);
         return intent;
     }
 
-    private void addItem(ArrayList<Model> models, String title, Intent intent){
-        models.add(new Model(title, intent));
+    private void addItem(ArrayList<Model> models, String title, Intent intent) {
+        Model tmp = new Model(title, intent);
+        Log.d(TAG, "addItem | tmp = " + tmp);
+        models.add(tmp);
     }
 
 

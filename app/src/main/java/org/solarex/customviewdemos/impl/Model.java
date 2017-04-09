@@ -29,4 +29,9 @@ public class Model {
     public void setIntent(Intent intent) {
         mIntent = intent;
     }
+
+    @Override
+    public String toString() {
+        return "Model[title = " + getTitle() + ",intent = " + getIntent() + "]";
+    }
 }
