@@ -14,11 +14,12 @@ public class CircleProgress1 extends View {
         super(context);
     }
     public CircleProgress1(Context context, @Nullable AttributeSet attrs) {
-
         super(context, attrs);
     }
 
     public CircleProgress1(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
+
+
 }
