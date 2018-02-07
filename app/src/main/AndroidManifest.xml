@@ -4,13 +4,13 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.CircleProgress1Activity"
+            android:name=".ui.CircleProgress1Activity"
             android:label="CircleProgress/CircleProgress1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.CircleProgress2Activity"
+            android:name=".ui.CircleProgress2Activity"
             android:label="CircleProgress/CircleProgress2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.CircleProgress3Activity"
+            android:name=".ui.CircleProgress3Activity"
             android:label="CircleProgress/CircleProgress3">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -42,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.BezierDemo1Activity"
+            android:name=".ui.BezierDemo1Activity"
             android:label="Bezier/BezierDemo1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.BezierDemo2Activity"
+            android:name=".ui.BezierDemo2Activity"
             android:label="Bezier/BezierDemo2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -58,8 +58,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".impl.NumberProgressActivity"
+            android:name=".ui.NumberProgressActivity"
             android:label="NumberProgress">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.SearchViewActivity"
+            android:label="SearchView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>

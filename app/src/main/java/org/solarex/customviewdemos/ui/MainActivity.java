@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos;
+package org.solarex.customviewdemos.ui;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
+import org.solarex.customviewdemos.R;
 import org.solarex.customviewdemos.impl.Adapter;
 import org.solarex.customviewdemos.impl.Model;
 

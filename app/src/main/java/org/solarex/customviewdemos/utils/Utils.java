@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.impl;
+package org.solarex.customviewdemos.utils;
 
 import android.content.Context;
 import android.view.View;

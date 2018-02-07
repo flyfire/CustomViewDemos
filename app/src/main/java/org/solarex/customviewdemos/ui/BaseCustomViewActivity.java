@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.impl;
+package org.solarex.customviewdemos.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
