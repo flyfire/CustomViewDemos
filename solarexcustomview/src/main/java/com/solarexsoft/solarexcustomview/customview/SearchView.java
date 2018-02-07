@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.customview;
+package com.solarexsoft.solarexcustomview.customview;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;

@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.utils;
+package com.solarexsoft.solarexcustomview.utils;
 
 /**
  * Created by houruhou on 10/04/2017.

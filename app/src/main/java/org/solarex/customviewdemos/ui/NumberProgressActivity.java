@@ -2,7 +2,7 @@ package org.solarex.customviewdemos.ui;
 
 import android.view.View;
 
-import org.solarex.customviewdemos.customview.NumberProgress;
+import com.solarexsoft.solarexcustomview.customview.NumberProgress;
 
 /**
  * Created by houruhou on 09/04/2017.

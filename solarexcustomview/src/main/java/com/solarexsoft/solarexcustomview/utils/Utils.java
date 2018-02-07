@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.utils;
+package com.solarexsoft.solarexcustomview.utils;
 
 import android.content.Context;
 import android.view.View;
@@ -21,7 +21,7 @@ public class Utils {
         return result;
     }
 
-    public static int dpTopx(Context context, float dp){
+    public static int dp2px(Context context, float dp){
         float density = context.getResources().getDisplayMetrics().density;
         return (int)(dp*density + 0.5f*(dp>=0?1:-1));
     }

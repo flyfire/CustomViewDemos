@@ -2,7 +2,7 @@ package org.solarex.customviewdemos.ui;
 
 import android.view.View;
 
-import org.solarex.customviewdemos.customview.CircleProgress3;
+import com.solarexsoft.solarexcustomview.customview.CircleProgress3;
 
 /**
  * Created by houruhou on 09/04/2017.

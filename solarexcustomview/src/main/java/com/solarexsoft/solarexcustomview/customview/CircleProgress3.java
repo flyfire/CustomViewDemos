@@ -1,4 +1,4 @@
-package org.solarex.customviewdemos.customview;
+package com.solarexsoft.solarexcustomview.customview;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
