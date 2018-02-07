@@ -12,6 +12,7 @@ import android.util.Log;
 
 import org.solarex.customviewdemos.R;
 import org.solarex.customviewdemos.impl.Adapter;
+import org.solarex.customviewdemos.impl.DividerItemdecoration;
 import org.solarex.customviewdemos.impl.Model;
 
 import java.text.Collator;
@@ -37,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
     private void initView() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
     }
 
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
         Adapter adapter = new Adapter(models, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addItemDecoration(new DividerItemdecoration());
     }
 
     @Override
