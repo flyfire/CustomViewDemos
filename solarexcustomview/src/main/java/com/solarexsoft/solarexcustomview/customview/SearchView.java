@@ -237,7 +237,7 @@ public class SearchView extends View {
                 mMeasure.setPath(path_search, false);
                 Path dst3 = new Path();
                 mMeasure.getSegment(mMeasure.getLength() * mAnimatorValue, mMeasure.getLength(),
-                        dst3, true);
+                    dst3, true);
                 canvas.drawPath(dst3, mPaint);
                 break;
         }

@@ -1,6 +1,7 @@
 package com.solarexsoft.solarexcustomview.utils;
 
-import android.content.Context;
+import android.content.res.Resources;
+import android.util.TypedValue;
 import android.view.View;
 
 /**
@@ -21,9 +22,8 @@ public class Utils {
         return result;
     }
 
-    public static int dp2px(Context context, float dp){
-        float density = context.getResources().getDisplayMetrics().density;
-        return (int)(dp*density + 0.5f*(dp>=0?1:-1));
+    public static float dp2px(float dp){
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics());
     }
 
 }
