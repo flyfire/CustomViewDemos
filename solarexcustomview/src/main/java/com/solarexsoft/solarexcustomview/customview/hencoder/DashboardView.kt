@@ -43,7 +43,7 @@ class DashboardView(context: Context, attrs: AttributeSet?, defaultStyle: Int) :
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         arcPath.addArc((w / 2 - RADIUS).toFloat(), (h / 2 - RADIUS).toFloat(), (w / 2 + RADIUS).toFloat(), (h / 2 + RADIUS).toFloat(), (90 + ANGEL / 2).toFloat(), (360 - ANGEL).toFloat())
         pathMeasure = PathMeasure(arcPath, false)
-        pathEffect = PathDashPathEffect(dashPath, (pathMeasure.length - Utils.dp2px(2f) / 20), 0, PathDashPathEffect.Style.ROTATE)
+        pathEffect = PathDashPathEffect(dashPath, (pathMeasure.length - Utils.dp2px(2f) / 20), 0f, PathDashPathEffect.Style.ROTATE)
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -53,7 +53,7 @@ class DashboardView(context: Context, attrs: AttributeSet?, defaultStyle: Int) :
         canvas.drawPath(arcPath, paint)
         paint.setPathEffect(null)
 
-        canvas.drawLine(w/2, h/2, (Math.cos(Math.toRadians(getAngelFromMark(5).toDouble()))*LENGTH+w/2), (Math.sin(Math.toRadians(getAngelFromMark(5).toDouble()))* LENGTH+h/2), paint)
+        canvas.drawLine((width/2).toFloat(), (height/2).toFloat(), (Math.cos(Math.toRadians(getAngelFromMark(5).toDouble()))*LENGTH+width/2).toFloat(), (Math.sin(Math.toRadians(getAngelFromMark(5).toDouble()))* LENGTH+height/2).toFloat(), paint)
     }
 
     private fun getAngelFromMark(mark: Int): Float {
