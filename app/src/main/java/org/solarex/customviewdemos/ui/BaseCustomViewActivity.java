@@ -13,8 +13,18 @@ public abstract class BaseCustomViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(createContentView());
+        if (getLayoutId() != 0) {
+            setContentView(getLayoutId());
+        } else {
+            setContentView(createContentView());
+        }
     }
 
-    protected abstract View createContentView();
+    protected View createContentView() {
+        return null;
+    }
+
+    protected int getLayoutId() {
+        return 0;
+    }
 }

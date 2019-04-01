@@ -88,6 +88,13 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.AvaterViewActivity"
+            android:label="Avater">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
