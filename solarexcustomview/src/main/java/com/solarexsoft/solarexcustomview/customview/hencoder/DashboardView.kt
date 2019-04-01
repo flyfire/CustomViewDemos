@@ -43,7 +43,7 @@ class DashboardView(context: Context, attrs: AttributeSet?, defaultStyle: Int) :
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         arcPath.addArc((w / 2 - RADIUS).toFloat(), (h / 2 - RADIUS).toFloat(), (w / 2 + RADIUS).toFloat(), (h / 2 + RADIUS).toFloat(), (90 + ANGEL / 2).toFloat(), (360 - ANGEL).toFloat())
         pathMeasure = PathMeasure(arcPath, false)
-        pathEffect = PathDashPathEffect(dashPath, (pathMeasure.length - Utils.dp2px(2f) / 20), 0f, PathDashPathEffect.Style.ROTATE)
+        pathEffect = PathDashPathEffect(dashPath, ((pathMeasure.length - Utils.dp2px(2f)) / 20), 0f, PathDashPathEffect.Style.ROTATE)
     }
 
     override fun onDraw(canvas: Canvas) {
