@@ -34,7 +34,7 @@ public class Utils {
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resources, resourceId, options);
         options.inJustDecodeBounds = false;
-        options.inDensity = options.outWidth;
+//        options.inDensity = options.outWidth;
         options.inTargetDensity = width;
         return BitmapFactory.decodeResource(resources, resourceId, options);
     }

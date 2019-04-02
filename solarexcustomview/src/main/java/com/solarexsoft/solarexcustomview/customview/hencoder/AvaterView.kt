@@ -22,8 +22,8 @@ class AvaterView(context: Context, attributeSet: AttributeSet?, defaultStyle: In
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
 
     companion object {
-        val WIDTH = Utils.dp2px(300f)
-        val PADDING = Utils.dp2px(50f)
+        val WIDTH = Utils.dp2px(220f)
+        val PADDING = Utils.dp2px(20f)
         val EDGE_WIDTH = Utils.dp2px(10f)
     }
 
