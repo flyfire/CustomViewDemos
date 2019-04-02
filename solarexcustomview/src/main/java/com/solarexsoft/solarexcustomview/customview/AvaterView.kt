@@ -1,4 +1,4 @@
-package com.solarexsoft.solarexcustomview.customview.hencoder
+package com.solarexsoft.solarexcustomview.customview
 
 import android.content.Context
 import android.graphics.*
@@ -49,7 +49,7 @@ class AvaterView(context: Context, attributeSet: AttributeSet?, defaultStyle: In
         super.onDraw(canvas)
         canvas.drawOval(savedArea, paint)
         val saveLayer = canvas.saveLayer(savedArea, paint)
-        canvas.drawOval(PADDING + EDGE_WIDTH, PADDING + EDGE_WIDTH, PADDING + WIDTH - EDGE_WIDTH , PADDING + WIDTH - EDGE_WIDTH, paint)
+        canvas.drawOval(PADDING + EDGE_WIDTH, PADDING + EDGE_WIDTH, PADDING + WIDTH - EDGE_WIDTH, PADDING + WIDTH - EDGE_WIDTH, paint)
         paint.xfermode = xfermode
         canvas.drawBitmap(bitmap, PADDING, PADDING, paint)
         paint.xfermode = null

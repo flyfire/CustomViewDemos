@@ -1,4 +1,4 @@
-package com.solarexsoft.solarexcustomview.customview.hencoder
+package com.solarexsoft.solarexcustomview.customview
 
 import android.content.Context
 import android.graphics.*
@@ -53,11 +53,11 @@ class DashboardView(context: Context, attrs: AttributeSet?, defaultStyle: Int) :
         canvas.drawPath(arcPath, paint)
         paint.setPathEffect(null)
 
-        canvas.drawLine((width/2).toFloat(), (height/2).toFloat(), (Math.cos(Math.toRadians(getAngelFromMark(5).toDouble()))*LENGTH+width/2).toFloat(), (Math.sin(Math.toRadians(getAngelFromMark(5).toDouble()))* LENGTH+height/2).toFloat(), paint)
+        canvas.drawLine((width/2).toFloat(), (height/2).toFloat(), (Math.cos(Math.toRadians(getAngelFromMark(5).toDouble()))* LENGTH +width/2).toFloat(), (Math.sin(Math.toRadians(getAngelFromMark(5).toDouble()))* LENGTH +height/2).toFloat(), paint)
     }
 
     private fun getAngelFromMark(mark: Int): Float {
-        return (90 + ANGEL/2 + (360- ANGEL)*mark/20).toFloat()
+        return (90 + ANGEL /2 + (360- ANGEL)*mark/20).toFloat()
     }
 }
 

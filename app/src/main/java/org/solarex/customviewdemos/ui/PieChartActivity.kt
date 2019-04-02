@@ -2,7 +2,7 @@ package org.solarex.customviewdemos.ui
 
 import android.graphics.Color
 import android.os.Bundle
-import com.solarexsoft.solarexcustomview.customview.hencoder.PieChart
+import com.solarexsoft.solarexcustomview.customview.PieChart
 import org.solarex.customviewdemos.R
 
 /**

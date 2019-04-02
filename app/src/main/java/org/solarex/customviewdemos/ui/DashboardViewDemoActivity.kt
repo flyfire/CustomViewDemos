@@ -2,7 +2,7 @@ package org.solarex.customviewdemos.ui
 
 import android.view.View
 
-import com.solarexsoft.solarexcustomview.customview.hencoder.DashboardView
+import com.solarexsoft.solarexcustomview.customview.DashboardView
 
 /**
  * <pre>

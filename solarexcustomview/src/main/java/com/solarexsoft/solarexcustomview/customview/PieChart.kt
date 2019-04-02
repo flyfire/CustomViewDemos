@@ -1,4 +1,4 @@
-package com.solarexsoft.solarexcustomview.customview.hencoder
+package com.solarexsoft.solarexcustomview.customview
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
