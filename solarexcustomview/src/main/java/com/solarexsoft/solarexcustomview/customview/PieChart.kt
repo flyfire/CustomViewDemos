@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import com.solarexsoft.solarexcustomview.utils.Utils
 
@@ -41,6 +42,7 @@ class PieChart @JvmOverloads constructor(context: Context, attributeSet: Attribu
 
     init {
         animator.duration = 500
+        animator.interpolator = AccelerateDecelerateInterpolator()
         animator.addUpdateListener {
             translate = it.animatedValue as Float
             invalidate()
