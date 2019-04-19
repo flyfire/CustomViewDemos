@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.solarex.customviewdemos">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.solarex.customviewdemos">
 
     <application
         android:allowBackup="true"
@@ -18,48 +19,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.CircleProgress1Activity"
-            android:label="CircleProgress/CircleProgress1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="solarex.intent.category.customview"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.CircleProgress2Activity"
-            android:label="CircleProgress/CircleProgress2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="solarex.intent.category.customview"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.CircleProgress3Activity"
-            android:label="CircleProgress/CircleProgress3">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="solarex.intent.category.customview"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.BezierDemo1Activity"
-            android:label="Bezier/BezierDemo1">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="solarex.intent.category.customview"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.BezierDemo2Activity"
-            android:label="Bezier/BezierDemo2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="solarex.intent.category.customview"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.NumberProgressActivity"
-            android:label="NumberProgress">
+            android:name=".ui.CircleProgressActivity"
+            android:label="CircleProgress">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>
