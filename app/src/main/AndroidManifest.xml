@@ -70,6 +70,13 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.DisscrollViewActivity"
+            android:label="DisscrollView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
