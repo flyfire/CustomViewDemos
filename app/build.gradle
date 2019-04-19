@@ -33,6 +33,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.solarexsoft.circleprogressbar:circleprogressbar:1.0.0'
     compile 'com.solarexsoft.disscrollview:disscrollview:1.0.0'
+    compile 'com.solarexsoft.flowlayout:flowlayout:1.0.0'
 }
 repositories {
     mavenCentral()
