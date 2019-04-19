@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.solarexsoft.flowlayoutdemo.MainActivity">
+
+    <com.solarexsoft.flowlayout.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.solarexsoft.flowlayoutdemo.MainActivity">
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#d500f9"
+            app:heightRatio="0.8"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#f50057"
+            app:heightRatio="1.6"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="45dp"
+            android:layout_height="wrap_content"
+            android:background="#aa00ff"
+            app:heightRatio="0.5"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:background="#76ff03"
+            app:heightRatio="0.4"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#4e342e"
+            app:heightRatio="0.5"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:background="#37474f"
+            app:heightRatio="0.6"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:background="#1de9b6"
+            app:heightRatio="0.8"/>
+
+        <com.solarexsoft.flowlayout.DynamicHeightTextView
+            android:layout_width="35dp"
+            android:layout_height="30dp"/>
+
+    </com.solarexsoft.flowlayout.FlowLayout>
+</ScrollView>
