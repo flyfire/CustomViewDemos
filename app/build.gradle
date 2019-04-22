@@ -36,6 +36,7 @@ dependencies {
     compile 'com.solarexsoft.disscrollview:disscrollview:1.0.0'
     compile 'com.solarexsoft.flowlayout:flowlayout:1.0.0'
     compile 'com.solarexsoft.solarexprogress:solarexprogress:1.0.0'
+    compile 'com.solarexsoft.solarextableview:solarextableview:1.0.0'
 }
 repositories {
     mavenCentral()
