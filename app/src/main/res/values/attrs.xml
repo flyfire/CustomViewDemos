@@ -45,4 +45,8 @@
         <attr name="bgArcColor"/>
         <attr name="bgArcWidth" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="radius" format="dimension"/>
+    </declare-styleable>
 </resources>
