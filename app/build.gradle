@@ -41,6 +41,7 @@ dependencies {
     compile 'com.solarexsoft:solarexweeklycalendar:1.0.0'
     compile 'com.solarexsoft:solarexradarview:1.0.0'
     compile 'com.solarexsoft:solarexzoomimageview:1.0.0'
+    compile 'com.solarexsoft:solarexnumberprogressbar:1.0.0'
 }
 repositories {
     mavenCentral()
