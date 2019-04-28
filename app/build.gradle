@@ -39,6 +39,7 @@ dependencies {
     compile 'com.solarexsoft.solarextableview:solarextableview:1.0.0'
     compile 'com.solarexsoft:solarexbezier:2.0.0'
     compile 'com.solarexsoft:solarexweeklycalendar:1.0.0'
+    compile 'com.solarexsoft:solarexradarview:1.0.0'
 }
 repositories {
     mavenCentral()
