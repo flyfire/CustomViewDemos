@@ -154,6 +154,20 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.DisplayConnectActivity"
+            android:label="DisplayConnect">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DisplayConnectWithTextActivity"
+            android:label="DisplayConnectWithText">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -46,6 +46,7 @@ dependencies {
     compile 'com.solarexsoft:solarexswipeback:1.0.0'
     compile 'com.solarexsoft:solarexdouyinloadingview:1.0.0'
     compile 'com.solarexsoft:solarexsleepstatisticsview:1.0.0'
+    compile 'com.solarexsoft:solarexdisplayconnectview:1.0.0'
 }
 repositories {
     mavenCentral()
