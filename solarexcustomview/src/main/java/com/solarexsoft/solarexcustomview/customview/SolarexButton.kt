@@ -46,7 +46,7 @@ class SolarexButton @JvmOverloads constructor(context: Context, attributeSet: At
             }
         }
         val result = super.onTouchEvent(ev)
-        Log.d(TAG, "touch result = $result")
-        return result
+        Log.d(TAG, "touch result = $result, return true")
+        return true
     }
 }
