@@ -2,4 +2,7 @@
     <declare-styleable name="AvaterView">
         <attr name="drawable" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="SolarexViewGroup">
+        <attr name="columns" format="integer"/>
+    </declare-styleable>
 </resources>
