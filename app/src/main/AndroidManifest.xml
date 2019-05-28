@@ -203,6 +203,13 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.DragHelperGridViewActivity"
+            android:label="Drag/DragHelperGridView">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

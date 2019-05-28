@@ -5,4 +5,8 @@
     <declare-styleable name="SolarexViewGroup">
         <attr name="columns" format="integer"/>
     </declare-styleable>
+    <declare-styleable name="RatioImageView">
+        <attr name="designWidth" format="integer"/>
+        <attr name="designHeight" format="integer"/>
+    </declare-styleable>
 </resources>
