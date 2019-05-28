@@ -13,5 +13,5 @@ import android.view.View
  */
  
 class StarView @JvmOverloads constructor(context: Context, attributeSet: AttributeSet? = null, defStyle: Int = 0) : View(context, attributeSet, defStyle) {
-    
+    // 画round rect 背景，画 五角星 画 得分 text
 }
