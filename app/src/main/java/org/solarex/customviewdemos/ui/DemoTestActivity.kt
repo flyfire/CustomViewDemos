@@ -26,6 +26,7 @@ class DemoTestActivity : BaseCustomViewActivity() {
         val tv_content = findViewById<TextView>(R.id.tv_content)
         val str = String.format(resources.getString(R.string.content_format), resources.getString(R.string.content))
         Log.d(TAG, "str = $str")
+        // textview 不支持 css 放弃 或尝试使用 https://github.com/SufficientlySecure/html-textview
         tv_content.text = Html.fromHtml(str)
     }
 }
