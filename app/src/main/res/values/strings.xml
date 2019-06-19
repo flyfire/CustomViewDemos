@@ -14,4 +14,5 @@ Hello Kitty的虚构世界包括一大堆朋友和家庭成员。从2004年开�
 Hello Kitty是一个可爱的女孩，而并不是猫。</string>
     <string name="content_format">&lt;div style=\"font-size: 12px; color: #374147; letter-spacing: 0; line-height: 18px;\"&gt;&lt;span style=\"display: inline-block; padding: 6px; background: #1ad9ca; border-radius: 1px; color: #ffffff; background: #1ad9ca; border-radius: 1px;\" &gt;链接&lt;/span&gt; %s&lt;/div&gt;</string>
     <string name="content">解读联想是如何一步步走到今天这个地步的解读联想是如何一步步走到今天这个地步的解读联想是如何一步步走到今天这个地步的</string>
+    <string name="share_content_format">链接    %s</string>
 </resources>
