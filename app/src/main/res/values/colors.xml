@@ -6,4 +6,7 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="test1">#e6ceff</color>
+    <color name="test2">#e35183</color>
+    <color name="test3">#a255ff</color>
 </resources>

@@ -217,8 +217,15 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.DemoTestActivity"
-            android:label="ZDemoTest">
+        <activity android:name=".ui.DemoTestActivity1"
+            android:label="ZDemoTest/DemoTest1">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DemoTestActivity2"
+            android:label="ZDemoTest/DemoTest2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>

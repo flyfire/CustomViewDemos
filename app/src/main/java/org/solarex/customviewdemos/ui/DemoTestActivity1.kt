@@ -22,8 +22,8 @@ import org.solarex.customviewdemos.R
  * </pre>
  */
  
-class DemoTestActivity : BaseCustomViewActivity() {
-    val TAG = DemoTestActivity::class.java.simpleName
+class DemoTestActivity1 : BaseCustomViewActivity() {
+    val TAG = DemoTestActivity1::class.java.simpleName
 
     override fun getLayoutId(): Int {
         return R.layout.activity_demo_test;
@@ -43,7 +43,7 @@ class DemoTestActivity : BaseCustomViewActivity() {
 }
 
 class RoundBackgroundColorSpan(private val bgColor: Int, private val textColor: Int) : ReplacementSpan() {
-    override fun getSize(paint: Paint, text: CharSequence, start: Int, end: Int, fm: Paint.FontMetricsInt): Int {
+    override fun getSize(paint: Paint, text: CharSequence, start: Int, end: Int, fm: Paint.FontMetricsInt?): Int {
         //设置宽度为文字宽度加16dp
         return (paint.measureText(text, start, end) + Utils.dp2px(16f)).toInt()
     }
