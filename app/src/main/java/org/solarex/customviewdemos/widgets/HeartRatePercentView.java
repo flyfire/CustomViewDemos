@@ -2,10 +2,10 @@ package org.solarex.customviewdemos.widgets;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -30,7 +30,7 @@ public class HeartRatePercentView extends View {
     private int mWidth;
     float x = 0;
     float step = 0;
-    int count = 20;
+    int count = 50;
     float translate = 0;
     public HeartRatePercentView(Context context) {
         super(context);
@@ -86,27 +86,26 @@ public class HeartRatePercentView extends View {
         canvas.drawBitmap(src, 0, 0, mPaint);
         canvas.restoreToCount(i);
         */
-        canvas.drawBitmap(makeDst(), 0, 0, null);
-    }
-
-    private Bitmap makeDst() {
-        Bitmap bitmap = Bitmap.createBitmap(mWidth, mWidth, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        canvas.save();
         canvas.drawColor(Color.BLUE);
         canvas.translate(translate, translate);
         canvas.rotate(-45);
         canvas.translate(-x, 0);
-        canvas.clipRect(new Rect(0, 0, Math.round(2*x), Math.round(2*x)));
-        canvas.drawColor(Color.GREEN);
+        BitmapShader shader = new BitmapShader(makeDst(), BitmapShader.TileMode.REPEAT, BitmapShader.TileMode.REPEAT);
+        mPaint.setShader(shader);
+        canvas.drawCircle(x, x, x, mPaint);
+    }
+
+    private Bitmap makeDst() {
+        Bitmap bitmap = Bitmap.createBitmap(Math.round(2*x), Math.round(2*x), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
         for (int i = 0; i < count; i++) {
             canvas.drawLine(0, i*step, 2*x, i*step, mLinePaint);
         }
-        canvas.restore();
         return bitmap;
     }
 
     private Bitmap makeSrc() {
+        /*
         Bitmap bitmap = Bitmap.createBitmap(mWidth, mWidth, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.save();
@@ -114,6 +113,12 @@ public class HeartRatePercentView extends View {
         canvas.translate(translate, translate);
         canvas.rotate(-45);
         canvas.translate(-x, 0);
+        mLinePaint.setColor(Color.GREEN);
+        canvas.drawCircle(x, x, x, mLinePaint);
+        return bitmap;
+        */
+        Bitmap bitmap = Bitmap.createBitmap(Math.round(2*x), Math.round(2*x), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
         mLinePaint.setColor(Color.GREEN);
         canvas.drawCircle(x, x, x, mLinePaint);
         return bitmap;
