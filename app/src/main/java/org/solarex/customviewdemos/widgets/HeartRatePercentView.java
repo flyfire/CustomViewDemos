@@ -5,12 +5,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.solarexsoft.solarexcustomview.utils.Utils;
+
+import org.solarex.customviewdemos.R;
 
 /**
  * <pre>
@@ -86,13 +91,39 @@ public class HeartRatePercentView extends View {
         canvas.drawBitmap(src, 0, 0, mPaint);
         canvas.restoreToCount(i);
         */
+        canvas.drawBitmap(makeSth(), 0, 0, mPaint);
+    }
+
+    private Bitmap makeSth() {
+        Bitmap bitmap = Bitmap.createBitmap(mWidth, mWidth, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
         canvas.drawColor(Color.BLUE);
         canvas.translate(translate, translate);
         canvas.rotate(-45);
         canvas.translate(-x, 0);
+        canvas.clipRect(new Rect(0, 0, Math.round(2*x), Math.round(2*x)));
+        canvas.drawColor(Color.GREEN);
         BitmapShader shader = new BitmapShader(makeDst(), BitmapShader.TileMode.REPEAT, BitmapShader.TileMode.REPEAT);
         mPaint.setShader(shader);
         canvas.drawCircle(x, x, x, mPaint);
+        mPaint.setShader(null);
+        mPaint.setColor(Color.WHITE);
+//        canvas.drawCircle(x, x, x/2, mPaint);
+        Drawable launcher = getResources().getDrawable(R.mipmap.ic_launcher);
+        Bitmap bitmapLauncher = drawable2Bitmap(launcher);
+        Matrix matrix = new Matrix();
+        matrix.postTranslate(x - bitmapLauncher.getWidth()/2, x - bitmapLauncher.getHeight()/2);
+        matrix.postRotate(45);
+//        canvas.drawBitmap(bitmapLauncher, matrix, null);
+        canvas.drawBitmap(bitmapLauncher, 0, 0, null);
+        return bitmap;
+    }
+
+    private Bitmap drawable2Bitmap(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     private Bitmap makeDst() {
