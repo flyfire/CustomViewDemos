@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -108,9 +109,7 @@ public class HeartRatePercentView extends View {
         mPaint.setShader(null);
         mPaint.setColor(Color.WHITE);
 //        canvas.drawCircle(x, x, x/2, mPaint);
-        Drawable launcher = getResources().getDrawable(R.mipmap.ic_launcher);
-        launcher.setBounds(Math.round(x-20), Math.round(x-20), Math.round(x+20), Math.round(x+20));
-        launcher.draw(canvas);
+
         /*
         Bitmap bitmapLauncher = drawable2Bitmap(launcher);
         Matrix matrix = new Matrix();
@@ -119,6 +118,26 @@ public class HeartRatePercentView extends View {
 //        canvas.drawBitmap(bitmapLauncher, matrix, null);
         canvas.drawBitmap(bitmapLauncher, 0, 0, null);
         */
+        /*
+        Bitmap center = makeCenterBitmap();
+        canvas.drawBitmap(center, x, x, null);
+        */
+        Bitmap launcher = makeCenterBitmap();
+        Matrix matrix = new Matrix();
+//        matrix.postTranslate(x - launcher.getWidth()/2, x - launcher.getHeight()/2);
+        matrix.postTranslate(x, x);
+        matrix.postRotate(45);
+        canvas.drawBitmap(launcher, matrix, null);
+        return bitmap;
+    }
+
+    private Bitmap makeCenterBitmap() {
+        Bitmap bitmap = Bitmap.createBitmap(80, 80, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Drawable launcher = getResources().getDrawable(R.mipmap.ic_launcher);
+        launcher.setBounds(0, 0, 80, 80);
+//        canvas.rotate(45);
+        launcher.draw(canvas);
         return bitmap;
     }
 
