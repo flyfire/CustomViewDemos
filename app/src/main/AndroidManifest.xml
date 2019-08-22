@@ -231,6 +231,20 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.span.IconTextSpanTestActivity"
+            android:label="ZDemoTest/IconTextSpanTest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.HeartRatePercentActivity"
+            android:label="HeartRatePercent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
