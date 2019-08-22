@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -110,12 +109,16 @@ public class HeartRatePercentView extends View {
         mPaint.setColor(Color.WHITE);
 //        canvas.drawCircle(x, x, x/2, mPaint);
         Drawable launcher = getResources().getDrawable(R.mipmap.ic_launcher);
+        launcher.setBounds(Math.round(x-20), Math.round(x-20), Math.round(x+20), Math.round(x+20));
+        launcher.draw(canvas);
+        /*
         Bitmap bitmapLauncher = drawable2Bitmap(launcher);
         Matrix matrix = new Matrix();
         matrix.postTranslate(x - bitmapLauncher.getWidth()/2, x - bitmapLauncher.getHeight()/2);
         matrix.postRotate(45);
 //        canvas.drawBitmap(bitmapLauncher, matrix, null);
         canvas.drawBitmap(bitmapLauncher, 0, 0, null);
+        */
         return bitmap;
     }
 
