@@ -97,7 +97,8 @@ public class HeartRatePercentView extends View {
 
     private void drawCenterCircle(Canvas canvas) {
         canvas.save();
-        
+        mPaint.setColor(Color.WHITE);
+        canvas.drawCircle(mWidth/2, mWidth/2, 60, mPaint);
         canvas.restore();
     }
 
