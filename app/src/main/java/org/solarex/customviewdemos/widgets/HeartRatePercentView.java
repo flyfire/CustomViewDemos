@@ -36,6 +36,8 @@ public class HeartRatePercentView extends View {
     float step = 0;
     int count = 50;
     float translate = 0;
+    float centerCircleRadius = 150;
+    int centerBitmapWidth = 100;
     public HeartRatePercentView(Context context) {
         super(context);
     }
@@ -98,15 +100,14 @@ public class HeartRatePercentView extends View {
     private void drawCenterCircle(Canvas canvas) {
         canvas.save();
         mPaint.setColor(Color.WHITE);
-        canvas.drawCircle(mWidth/2, mWidth/2, 60, mPaint);
+        canvas.drawCircle(mWidth/2, mWidth/2, centerCircleRadius, mPaint);
         canvas.restore();
     }
 
     private void drawCenterBitmap(Canvas canvas) {
         canvas.save();
         Bitmap launcher = makeCenterBitmap();
-        canvas.translate(mWidth-launcher.getWidth()/2, mWidth-launcher.getHeight()/2);
-        canvas.drawBitmap(launcher, 0, 0, null);
+        canvas.drawBitmap(launcher, (mWidth-launcher.getWidth())/2, (mWidth-launcher.getHeight())/2, null);
         canvas.restore();
     }
 
@@ -168,10 +169,10 @@ public class HeartRatePercentView extends View {
     }
 
     private Bitmap makeCenterBitmap() {
-        Bitmap bitmap = Bitmap.createBitmap(80, 80, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(centerBitmapWidth, centerBitmapWidth, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Drawable launcher = getResources().getDrawable(R.mipmap.ic_launcher);
-        launcher.setBounds(0, 0, 80, 80);
+        launcher.setBounds(0, 0, centerBitmapWidth, centerBitmapWidth);
 //        canvas.rotate(45);
         launcher.draw(canvas);
         return bitmap;
