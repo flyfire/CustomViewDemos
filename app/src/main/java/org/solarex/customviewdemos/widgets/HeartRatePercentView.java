@@ -91,6 +91,22 @@ public class HeartRatePercentView extends View {
         canvas.restoreToCount(i);
         */
         canvas.drawBitmap(makeSth(), 0, 0, mPaint);
+        drawCenterCircle(canvas);
+        drawCenterBitmap(canvas);
+    }
+
+    private void drawCenterCircle(Canvas canvas) {
+        canvas.save();
+        
+        canvas.restore();
+    }
+
+    private void drawCenterBitmap(Canvas canvas) {
+        canvas.save();
+        Bitmap launcher = makeCenterBitmap();
+        canvas.translate(mWidth-launcher.getWidth()/2, mWidth-launcher.getHeight()/2);
+        canvas.drawBitmap(launcher, 0, 0, null);
+        canvas.restore();
     }
 
     private Bitmap makeSth() {
@@ -129,6 +145,7 @@ public class HeartRatePercentView extends View {
         matrix.postRotate(45);
         canvas.drawBitmap(launcher, matrix, null);
         */
+        /*
         canvas.save();
         Bitmap launcher = makeCenterBitmap();
         canvas.translate(x - launcher.getWidth()/2, x - launcher.getHeight()/2);
@@ -136,6 +153,16 @@ public class HeartRatePercentView extends View {
         mPaint.setColor(Color.LTGRAY);
         canvas.drawRect(0, 0, 100, 100, mPaint);
         canvas.restore();
+        */
+        /*
+        canvas.save();
+        Bitmap launcher = makeCenterBitmap();
+        Matrix matrix = new Matrix();
+        matrix.setTranslate(x - launcher.getWidth()/2, x - launcher.getHeight()/2);
+//        matrix.postRotate(45);
+        canvas.drawBitmap(launcher, matrix, null);
+        canvas.restore();
+        */
         return bitmap;
     }
 
