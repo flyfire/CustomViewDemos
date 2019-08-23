@@ -18,7 +18,10 @@ public abstract class BaseCustomViewActivity extends AppCompatActivity {
         } else {
             setContentView(createContentView());
         }
+        initView();
     }
+
+    protected void initView() {}
 
     protected View createContentView() {
         return null;

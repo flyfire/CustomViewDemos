@@ -113,7 +113,11 @@ public class HeartRateRulerView extends View {
                 top = mHighlightMarginTop + mHighlightHeadHeight;
                 bottom = top + mItemHeight;
             }
-            mPaint.setColor(colors.get(i-1));
+            if (mHighlightIndex != -1) {
+                mPaint.setColor(colors.get(i-1));
+            } else {
+                mPaint.setColor(mColor);
+            }
             canvas.drawRect(left, top, right, bottom, mPaint);
         }
     }
