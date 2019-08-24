@@ -31,7 +31,7 @@ public class HeartRateRangeCircleView extends View {
     List<Integer> mColors;
     List<Float> mAngles = new ArrayList<>();
     RectF mOval = new RectF();
-    float mArcStrokeWidth = Utils.dp2px(30f);
+    float mArcStrokeWidth = 50f;
     float mCenterCircleRadius = 0f;
     int mWidth;
     Paint mDashLinePaint,mCirclePaint;
@@ -64,11 +64,12 @@ public class HeartRateRangeCircleView extends View {
 
     {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStrokeWidth(40f);
-        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeWidth(mArcStrokeWidth);
         mDashLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDashLinePaint.setColor(Color.parseColor("#8599a7"));
         mDashLinePaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
+        mDashLinePaint.setStrokeWidth(Utils.dp2px(1));
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setColor(Color.WHITE);
         mCirclePaint.setStyle(Paint.Style.FILL);
@@ -98,7 +99,7 @@ public class HeartRateRangeCircleView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
         if (mAngles != null && mAngles.size() > 0) {
-            float startAngle = 0f;
+            float startAngle = -90f;
             for (int i = 0; i < mAngles.size(); i++) {
                 Float angle = mAngles.get(i);
                 int startColor = mColors.get(i * 2);
@@ -121,6 +122,13 @@ public class HeartRateRangeCircleView extends View {
     }
 
     private void drawMiddleDashLine(Canvas canvas) {
+        /*
         canvas.drawLine((mWidth - mDashLineStrokeWidth)/2.0f,0, mWidth/2.0f + mDashLineStrokeWidth/2.0f, mWidth/2.0f, mDashLinePaint);
+        */
+        canvas.save();
+        canvas.translate(mWidth/2.0f, mWidth/2.f);
+        canvas.rotate(-90f);
+        canvas.drawLine(0, 0, mWidth/2.0f, mWidth/2.0f, mDashLinePaint);
+        canvas.restore();
     }
 }

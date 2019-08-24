@@ -9,4 +9,18 @@
     <color name="test1">#e6ceff</color>
     <color name="test2">#e35183</color>
     <color name="test3">#a255ff</color>
+
+    <!-- range circle -->
+    <color name="c_FFD8BE">#FFD8BE</color>
+    <color name="c_FD6090">#FD6090</color>
+    <color name="c_FFF58C">#FFF58C</color>
+    <color name="c_FFC400">#FFC400</color>
+    <color name="c_DEFF94">#DEFF94</color>
+    <color name="c_6CD94C">#6CD94C</color>
+    <color name="c_93FDEB">#93FDEB</color>
+    <color name="c_43B4FF">#43B4FF</color>
+    <color name="c_76D5FF">#76D5FF</color>
+    <color name="c_459EFF">#459EFF</color>
+    <color name="c_C2B2FF">#C2B2FF</color>
+    <color name="c_8465FF">#8465FF</color>
 </resources>
