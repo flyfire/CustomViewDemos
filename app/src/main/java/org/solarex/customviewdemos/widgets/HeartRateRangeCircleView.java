@@ -104,8 +104,7 @@ public class HeartRateRangeCircleView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
         if (mAngles != null && mAngles.size() > 0) {
-//            drawSweepGradientProgress(canvas);
-            drawLinearGradientProgress(canvas);
+            drawSweepGradientProgressUsingMatrix(canvas);
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
         } else {
@@ -149,21 +148,48 @@ public class HeartRateRangeCircleView extends View {
         animator.start();
     }
 
-    private void drawSweepGradientProgress(Canvas canvas) {
+    private void drawSweepGradientProgressUsingMatrix(Canvas canvas) {
         float startAngle = -90f;
         for (int i = 0; i < mAngles.size(); i++) {
             Float angle = mAngles.get(i);
             int startColor = mColors.get(i * 2);
             int endColor = mColors.get(i * 2 + 1);
-            int[] colors = new int[]{startColor, endColor, startColor};
-            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors, null);
+            int[] colors = new int[]{startColor, endColor};
+            float[] positions = new float[] {0f, angle/360.0f};
             Matrix matrix = new Matrix();
-            matrix.setRotate(startAngle, mOval.centerX(), mOval.centerY());
+            matrix.setRotate(startAngle, mWidth/2.0f, mWidth/2.0f);
+            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors,positions);
+//            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, startColor, endColor);
             gradient.setLocalMatrix(matrix);
             mPaint.setShader(gradient);
             canvas.drawArc(mOval, startAngle, angle, false, mPaint);
             mPaint.setShader(null);
             startAngle+=angle;
+        }
+    }
+
+    private void drawSweepGradientProgress(Canvas canvas) {
+        float startAngle = -90f;
+        float offset = 0f;
+        for (int i = 0; i < mAngles.size(); i++) {
+            Float angle = mAngles.get(i);
+            int startColor = mColors.get(i * 2);
+            int endColor = mColors.get(i * 2 + 1);
+            int[] colors = new int[]{startColor, endColor};
+            /*
+            float[] positions = new float[3];
+            positions[0] = (offset*1f)/360f;
+            positions[1] = (offset + angle/2.0f)/360.0f;
+            positions[2] = (offset + angle)/360.0f;
+//            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors, positions);
+            */
+//            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, startColor, endColor);
+            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors,null);
+            mPaint.setShader(gradient);
+            canvas.drawArc(mOval, startAngle, angle, false, mPaint);
+            mPaint.setShader(null);
+            startAngle+=angle;
+            offset += angle;
         }
     }
 
