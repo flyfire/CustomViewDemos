@@ -5,9 +5,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -102,12 +104,27 @@ public class HeartRateRangeCircleView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
         if (mAngles != null && mAngles.size() > 0) {
-            drawGradientProgress(canvas);
+//            drawSweepGradientProgress(canvas);
+            drawLinearGradientProgress(canvas);
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
         } else {
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
+        }
+    }
+
+    private void drawLinearGradientProgress(Canvas canvas) {
+        float startAngle = -90f;
+        for (int i = 0; i < mAngles.size(); i++) {
+            Float angle = mAngles.get(i);
+            int startColor = mColors.get(i * 2);
+            int endColor = mColors.get(i * 2 + 1);
+            LinearGradient gradient = new LinearGradient(mOval.left, mOval.top, mOval.right, mOval.bottom, startColor, endColor, Shader.TileMode.MIRROR);
+            mPaint.setShader(gradient);
+            canvas.drawArc(mOval, startAngle, angle, false, mPaint);
+            mPaint.setShader(null);
+            startAngle+=angle;
         }
     }
 
@@ -132,7 +149,7 @@ public class HeartRateRangeCircleView extends View {
         animator.start();
     }
 
-    private void drawGradientProgress(Canvas canvas) {
+    private void drawSweepGradientProgress(Canvas canvas) {
         float startAngle = -90f;
         for (int i = 0; i < mAngles.size(); i++) {
             Float angle = mAngles.get(i);
