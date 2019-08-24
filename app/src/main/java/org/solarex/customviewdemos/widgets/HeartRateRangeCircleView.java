@@ -154,8 +154,8 @@ public class HeartRateRangeCircleView extends View {
             Float angle = mAngles.get(i);
             int startColor = mColors.get(i * 2);
             int endColor = mColors.get(i * 2 + 1);
-            int[] colors = new int[]{startColor, endColor};
-            float[] positions = new float[] {0f, angle/360.0f};
+            int[] colors = new int[]{startColor, endColor, startColor};
+            float[] positions = new float[] {0f, angle/360.0f, 1.0f};
             Matrix matrix = new Matrix();
             matrix.setRotate(startAngle, mWidth/2.0f, mWidth/2.0f);
             SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors,positions);
