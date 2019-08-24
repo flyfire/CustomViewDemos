@@ -18,6 +18,6 @@ public class HeartRateRangeCircleActivity extends BaseCustomViewActivity {
 
     @Override
     protected void initView() {
-        
+
     }
 }

@@ -94,7 +94,18 @@ public class HeartRateRangeCircleView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (mAngles != null && mAngles.size() > 0) {
-
+            float startAngle = 0f;
+            for (int i = 0; i < mAngles.size(); i++) {
+                Float angle = mAngles.get(i);
+                int startColor = mColors.get(i * 2);
+                int endColor = mColors.get(i * 2 + 1);
+                SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, startColor, endColor);
+                mPaint.setShader(gradient);
+                canvas.drawArc(mOval, startAngle, angle, false, mPaint);
+                startAngle+=angle;
+            }
+            drawMiddleDashLine(canvas);
+            drawCenterCircle(canvas);
         } else {
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
