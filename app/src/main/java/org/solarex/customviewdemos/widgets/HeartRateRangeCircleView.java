@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.solarexsoft.solarexcustomview.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class HeartRateRangeCircleView extends View {
     SweepGradient mShader;
     List<Integer> mValues;
     List<Integer> mColors;
-    List<Float> mAngles;
+    List<Float> mAngles = new ArrayList<>();
     RectF mOval = new RectF();
     float mArcStrokeWidth = Utils.dp2px(30f);
     float mCenterCircleRadius = 0f;
@@ -57,7 +58,7 @@ public class HeartRateRangeCircleView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
-        mOval.set(mArcStrokeWidth/2, mArcStrokeWidth/2, (mWidth-mArcStrokeWidth)/2, (mWidth-mArcStrokeWidth)/2);
+        mOval.set(mArcStrokeWidth/2, mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2);
         mCenterCircleRadius = mWidth/2 - mArcStrokeWidth - Utils.dp2px(20);
     }
 
@@ -78,6 +79,7 @@ public class HeartRateRangeCircleView extends View {
             if (values.size() * 2 != colors.size()) {
                 return;
             }
+            mAngles.clear();
             mValues = values;
             int sum = 0;
             for (Integer value : values) {
@@ -87,12 +89,14 @@ public class HeartRateRangeCircleView extends View {
                 float angle = (value * 360.0f) / sum;
                 mAngles.add(angle);
             }
+            mColors = colors;
             invalidate();
         }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.drawColor(Color.BLUE);
         if (mAngles != null && mAngles.size() > 0) {
             float startAngle = 0f;
             for (int i = 0; i < mAngles.size(); i++) {
