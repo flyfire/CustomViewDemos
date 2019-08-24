@@ -78,17 +78,17 @@ public class HeartRatePercentView extends View {
         /*
         canvas.translate(100, 100);
         canvas.rotate(-45);
-        canvas.drawRect(new Rect(0, 0, 400, 400), mLinePaint);
-        mLinePaint.setColor(Color.RED);
+        canvas.drawRect(new Rect(0, 0, 400, 400), mDashLinePaint);
+        mDashLinePaint.setColor(Color.RED);
         canvas.translate(-200, 0);
-        canvas.drawRect(new Rect(0, 0,300, 300), mLinePaint);
+        canvas.drawRect(new Rect(0, 0,300, 300), mDashLinePaint);
         */
         /*
         int i = canvas.saveLayer(0, 0, mWidth, mWidth, mPaint);
         Bitmap dst = makeDst();
         Bitmap src = makeSrc();
         canvas.drawBitmap(dst, 0, 0, mPaint);
-        mLinePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
+        mDashLinePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_ATOP));
         canvas.drawBitmap(src, 0, 0, mPaint);
         canvas.restoreToCount(i);
         */
@@ -203,8 +203,8 @@ public class HeartRatePercentView extends View {
         canvas.translate(translate, translate);
         canvas.rotate(-45);
         canvas.translate(-x, 0);
-        mLinePaint.setColor(Color.GREEN);
-        canvas.drawCircle(x, x, x, mLinePaint);
+        mDashLinePaint.setColor(Color.GREEN);
+        canvas.drawCircle(x, x, x, mDashLinePaint);
         return bitmap;
         */
         Bitmap bitmap = Bitmap.createBitmap(Math.round(2*x), Math.round(2*x), Bitmap.Config.ARGB_8888);
