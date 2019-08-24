@@ -1,5 +1,6 @@
 package org.solarex.customviewdemos.widgets;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -37,6 +38,7 @@ public class HeartRateRangeCircleView extends View {
     int mWidth;
     Paint mDashLinePaint,mCirclePaint;
     float mDashLineStrokeWidth = Utils.dp2px(1);
+    float mProgress = 60f;
 
     public HeartRateRangeCircleView(Context context) {
         super(context);
@@ -100,24 +102,51 @@ public class HeartRateRangeCircleView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
         if (mAngles != null && mAngles.size() > 0) {
-            float startAngle = -90f;
-            for (int i = 0; i < mAngles.size(); i++) {
-                Float angle = mAngles.get(i);
-                int startColor = mColors.get(i * 2);
-                int endColor = mColors.get(i * 2 + 1);
-                SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, startColor, endColor);
-                Matrix matrix = new Matrix();
-                matrix.postRotate(-90f);
-                gradient.setLocalMatrix(matrix);
-                mPaint.setShader(gradient);
-                canvas.drawArc(mOval, startAngle, angle, false, mPaint);
-                startAngle+=angle;
-            }
+            drawGradientProgress(canvas);
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
         } else {
             drawMiddleDashLine(canvas);
             drawCenterCircle(canvas);
+        }
+    }
+
+    private void drawTestSweepGradient(Canvas canvas) {
+        int startColor = mColors.get(0);
+        int endcColor = mColors.get(1);
+        SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, new int[]{startColor, endcColor, startColor}, null);
+        mPaint.setShader(gradient);
+        canvas.drawArc(mOval, -90f, mProgress, false, mPaint);
+    }
+
+    public void start() {
+        ValueAnimator animator = ValueAnimator.ofFloat(60f, 360f);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                mProgress = (float) animation.getAnimatedValue();
+                invalidate();
+            }
+        });
+        animator.setDuration(10000);
+        animator.start();
+    }
+
+    private void drawGradientProgress(Canvas canvas) {
+        float startAngle = -90f;
+        for (int i = 0; i < mAngles.size(); i++) {
+            Float angle = mAngles.get(i);
+            int startColor = mColors.get(i * 2);
+            int endColor = mColors.get(i * 2 + 1);
+            int[] colors = new int[]{startColor, endColor, startColor};
+            SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, colors, null);
+            Matrix matrix = new Matrix();
+            matrix.setRotate(startAngle, mOval.centerX(), mOval.centerY());
+            gradient.setLocalMatrix(matrix);
+            mPaint.setShader(gradient);
+            canvas.drawArc(mOval, startAngle, angle, false, mPaint);
+            mPaint.setShader(null);
+            startAngle+=angle;
         }
     }
 
