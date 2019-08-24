@@ -60,7 +60,7 @@ public class HeartRateRangeCircleActivity extends BaseCustomViewActivity {
         h3Values.add(4);
         h3Values.add(8);
         h3Values.add(6);
-        /*
+
         h3Colors.add(aColor1);
         h3Colors.add(aColor2);
         h3Colors.add(bColor1);
@@ -73,7 +73,8 @@ public class HeartRateRangeCircleActivity extends BaseCustomViewActivity {
         h3Colors.add(eColor2);
         h3Colors.add(fColor1);
         h3Colors.add(fColor2);
-        */
+
+        /*
         h3Colors.add(Color.RED);
         h3Colors.add(Color.WHITE);
         h3Colors.add(Color.GREEN);
@@ -86,7 +87,7 @@ public class HeartRateRangeCircleActivity extends BaseCustomViewActivity {
         h3Colors.add(Color.BLUE);
         h3Colors.add(Color.RED);
         h3Colors.add(Color.WHITE);
-
+        */
 
         hrrcv_2.setValuesAndColors(h2Values, h2Colors);
         hrrcv_3.setValuesAndColors(h3Values, h3Colors);
