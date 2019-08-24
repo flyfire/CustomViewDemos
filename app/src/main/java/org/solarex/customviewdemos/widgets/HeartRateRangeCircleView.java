@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
@@ -31,11 +32,11 @@ public class HeartRateRangeCircleView extends View {
     List<Integer> mColors;
     List<Float> mAngles = new ArrayList<>();
     RectF mOval = new RectF();
-    float mArcStrokeWidth = 50f;
+    float mArcStrokeWidth = Utils.dp2px(25f);
     float mCenterCircleRadius = 0f;
     int mWidth;
     Paint mDashLinePaint,mCirclePaint;
-    float mDashLineStrokeWidth = Utils.dp2px(2);
+    float mDashLineStrokeWidth = Utils.dp2px(1);
 
     public HeartRateRangeCircleView(Context context) {
         super(context);
@@ -59,7 +60,7 @@ public class HeartRateRangeCircleView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mOval.set(mArcStrokeWidth/2, mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2);
-        mCenterCircleRadius = mWidth/2 - mArcStrokeWidth - Utils.dp2px(20);
+        mCenterCircleRadius = mWidth/2 - mArcStrokeWidth - Utils.dp2px(10);
     }
 
     {
@@ -69,7 +70,7 @@ public class HeartRateRangeCircleView extends View {
         mDashLinePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mDashLinePaint.setColor(Color.parseColor("#8599a7"));
         mDashLinePaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
-        mDashLinePaint.setStrokeWidth(Utils.dp2px(1));
+        mDashLinePaint.setStrokeWidth(mDashLineStrokeWidth);
         mCirclePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mCirclePaint.setColor(Color.WHITE);
         mCirclePaint.setStyle(Paint.Style.FILL);
@@ -105,6 +106,9 @@ public class HeartRateRangeCircleView extends View {
                 int startColor = mColors.get(i * 2);
                 int endColor = mColors.get(i * 2 + 1);
                 SweepGradient gradient = new SweepGradient(mWidth/2.0f, mWidth/2.0f, startColor, endColor);
+                Matrix matrix = new Matrix();
+                matrix.postRotate(-90f);
+                gradient.setLocalMatrix(matrix);
                 mPaint.setShader(gradient);
                 canvas.drawArc(mOval, startAngle, angle, false, mPaint);
                 startAngle+=angle;
@@ -128,7 +132,7 @@ public class HeartRateRangeCircleView extends View {
         canvas.save();
         canvas.translate(mWidth/2.0f, mWidth/2.f);
         canvas.rotate(-90f);
-        canvas.drawLine(0, 0, mWidth/2.0f, mWidth/2.0f, mDashLinePaint);
+        canvas.drawLine(0, 0, mWidth/2.0f, 0f, mDashLinePaint);
         canvas.restore();
     }
 }
