@@ -41,6 +41,7 @@ public class HeartRateRangeCircleView extends View {
     Paint mDashLinePaint,mCirclePaint;
     float mDashLineStrokeWidth = Utils.dp2px(1);
     float mProgress = 60f;
+    float mTopMargin = Utils.dp2px(5);
 
     public HeartRateRangeCircleView(Context context) {
         super(context);
@@ -63,8 +64,8 @@ public class HeartRateRangeCircleView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
-        mOval.set(mArcStrokeWidth/2, mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2);
-        mCenterCircleRadius = mWidth/2 - mArcStrokeWidth - Utils.dp2px(10);
+        mOval.set(mTopMargin + mArcStrokeWidth/2, mTopMargin + mArcStrokeWidth/2, mWidth-mArcStrokeWidth/2 - mTopMargin, mWidth-mArcStrokeWidth/2 - mTopMargin);
+        mCenterCircleRadius = mWidth/2 - mArcStrokeWidth - Utils.dp2px(10) - mTopMargin;
     }
 
     {
