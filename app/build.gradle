@@ -47,6 +47,7 @@ dependencies {
     compile 'com.solarexsoft:solarexdouyinloadingview:1.0.0'
     compile 'com.solarexsoft:solarexsleepstatisticsview:1.0.0'
     compile 'com.solarexsoft:solarexdisplayconnectview:1.0.0'
+    compile 'me.yokeyword:indexablerecyclerview:1.3.0'
 }
 repositories {
     mavenCentral()
