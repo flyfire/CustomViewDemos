@@ -12,7 +12,7 @@
         android:hint="搜索"/>
     <me.yokeyword.indexablerv.IndexableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/c_43B4FF"
         android:layout_below="@+id/et_search"
         android:layout_above="@+id/rl_selected"/>

@@ -10,7 +10,7 @@ import org.solarex.customviewdemos.R
  * </pre>
  */
  
-class DemoTestKeyboard : BaseCustomViewActivity() {
+class DemoTestKeyboardIndexableLayout : BaseCustomViewActivity() {
     override fun getLayoutId(): Int {
         // 布局中使用IndexableLayout,键盘弹起，布局无法上浮，原因待查
         return R.layout.activity_demotest_keyboard_indexablelayout

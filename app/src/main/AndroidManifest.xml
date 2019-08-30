@@ -266,9 +266,17 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.DemoTestKeyboard"
+        <activity android:name=".ui.DemoTestKeyboardIndexableLayout"
             android:windowSoftInputMode="adjustResize|stateHidden"
-            android:label="ZDemoTest/DemoTestKeyboard">
+            android:label="ZDemoTest/DemoTestKeyboardIndexablelayout">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.DemoTestKeyboardFramelayout"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:label="ZDemoTest/DemoTestKeyboardFramelayout">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>
