@@ -49,4 +49,16 @@
     <declare-styleable name="RoundImageView">
         <attr name="radius" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="TwoColorGradientView">
+        <attr name="gv_startColor" format="color" />
+        <attr name="gv_endColor" format="color" />
+        <attr name="gv_stokeWidth" format="dimension" />
+        <attr name="gv_isRound" format="boolean" />
+        <attr name="gv_gridColor" format="color" />
+        <attr name="gv_gridCount" format="integer" />
+        <attr name="gv_gridWidth" format="dimension" />
+        <attr name="gv_labelColor" format="color" />
+        <attr name="gv_labelSize" format="dimension" />
+    </declare-styleable>
 </resources>
