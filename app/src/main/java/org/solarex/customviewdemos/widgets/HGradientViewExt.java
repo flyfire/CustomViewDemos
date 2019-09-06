@@ -14,6 +14,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -105,18 +106,22 @@ public class HGradientViewExt extends View {
         float vStepoff = realHeight / (length - 1 + 2);//线居中
         float halfStoke = stokeWidth / 2f;
         chartPaint.setShader(null);
+        chartPaint.setStrokeWidth(stokeWidth);
         chartPaint.setColor(progressBgColor);
         for (int i = 0; i < length; i++) {
+            /*
             canvas.drawLine(rectMin.width() / 2f + halfStoke
                     , halfStoke + vStepoff * i + vStepoff
                     , rectMin.width() / 2f + realWidth - halfStoke
                     , halfStoke + vStepoff * i + vStepoff
                     , chartPaint);
+             */
+            canvas.drawRoundRect(new RectF(rectMin.width() / 2f + halfStoke,halfStoke + vStepoff * i + vStepoff, rectMin.width() / 2f + realWidth - halfStoke, halfStoke + vStepoff * i + vStepoff + stokeWidth ), stokeWidth, stokeWidth, chartPaint);
         }
 
         chartPaint.setColor(startColor);
-        chartPaint.setStyle(Paint.Style.STROKE);
-        chartPaint.setStrokeWidth(stokeWidth);
+//        chartPaint.setStyle(Paint.Style.STROKE);
+//        chartPaint.setStrokeWidth(stokeWidth);
         chartPaint.setStrokeCap(isRound ? Paint.Cap.ROUND : Paint.Cap.SQUARE);
         for (int i = 0; i < length; i++) {
             float progressWidth = realWidth * (datas[i] - getMinValue()) / (getMaxValue() - getMinValue());
@@ -128,11 +133,14 @@ public class HGradientViewExt extends View {
                     , Shader.TileMode.CLAMP);
             chartPaint.setShader(shader);
             if (progressWidth >= stokeWidth) {
+                /*
                 canvas.drawLine(rectMin.width() / 2f + halfStoke
                         , halfStoke + vStepoff * i + vStepoff
                         , rectMin.width() / 2f + progressWidth - halfStoke
                         , halfStoke + vStepoff * i + vStepoff
                         , chartPaint);
+                 */
+                canvas.drawRoundRect(new RectF(rectMin.width() / 2f + halfStoke, halfStoke + vStepoff * i + vStepoff, rectMin.width() / 2f + progressWidth - halfStoke, halfStoke + vStepoff * i + vStepoff + stokeWidth), stokeWidth, stokeWidth, chartPaint);
             } else {
                 drawLessStokeWidth(canvas, chartPaint.getShader(), rectMin.width() / 2f, vStepoff * i + vStepoff, progressWidth);
             }
@@ -141,6 +149,7 @@ public class HGradientViewExt extends View {
 
     protected void drawLessStokeWidth(Canvas canvas, Shader shader, float sx, float sy, float pwidth) {
         float wtch = getStokeWidth();
+        float halfStroke = wtch/2.0f;
         Paint mDstPaint, mSrcPaint;
         Bitmap mSrcBitmap, mDstBitmap;
         Canvas mSrcCanvas, mDstCanvas;
@@ -166,10 +175,10 @@ public class HGradientViewExt extends View {
 
         //准备好两张位图后在设置画笔模式，然后将图片画上去
         mDstPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-        canvas.drawBitmap(mSrcBitmap, sx, sy, mSrcPaint);
-        canvas.drawBitmap(mDstBitmap, sx, sy, mDstPaint);
+        canvas.drawBitmap(mSrcBitmap, sx+halfStroke, sy+halfStroke, mSrcPaint);
+        canvas.drawBitmap(mDstBitmap, sx+halfStroke, sy+halfStroke, mDstPaint);
         mDstPaint.setXfermode(null);
-        canvas.drawRect(sx + pwidth, sy, sx + stokeWidth, sy + stokeWidth, mDstPaint);
+        canvas.drawRect(sx + halfStroke + pwidth, sy + halfStroke, sx + stokeWidth + halfStroke, sy + stokeWidth + halfStroke, mDstPaint);
     }
 
     protected void drawGrids(Canvas canvas) {
