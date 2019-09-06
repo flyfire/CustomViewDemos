@@ -16,6 +16,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 
@@ -23,6 +24,7 @@ import org.solarex.customviewdemos.R;
 
 
 public class HGradientViewExt extends View {
+    private static final String TAG = "HGradientViewExt";
     private int startColor;
     private int endColor;
     private int gridColor;
@@ -79,13 +81,13 @@ public class HGradientViewExt extends View {
         chartPaint.setAntiAlias(true);
 
         density = getContext().getResources().getDisplayMetrics().density;
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawGrids(canvas);
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         drawBars(canvas);
     }
 
@@ -94,6 +96,10 @@ public class HGradientViewExt extends View {
             return;
         }
         int length = getDatas().length;
+        Log.d(TAG, "length = " + length);
+        for (int i = 0; i < length; i++) {
+            Log.d(TAG, "data = " + datas[i]);
+        }
         float realHeight = (getHeight() - labelSize - density * 5f - stokeWidth)//
                 , realWidth = (getWidth() - rectMin.width() / 2f - rectMax.width() / 2f);
         float vStepoff = realHeight / (length - 1 + 2);//线居中
@@ -114,7 +120,8 @@ public class HGradientViewExt extends View {
         chartPaint.setStrokeCap(isRound ? Paint.Cap.ROUND : Paint.Cap.SQUARE);
         for (int i = 0; i < length; i++) {
             float progressWidth = realWidth * (datas[i] - getMinValue()) / (getMaxValue() - getMinValue());
-            if (progressWidth == 0f) continue;
+            Log.d(TAG, "progresswidth = " + progressWidth);
+            if (progressWidth <= 0f) continue;
             LinearGradient shader = new LinearGradient(0, 0, realWidth, 0
                     , getIndexGradientColors(i)
                     , null

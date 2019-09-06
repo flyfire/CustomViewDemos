@@ -20,6 +20,6 @@ class HGradientViewActivity : BaseCustomViewActivity() {
         val view = findViewById<HGradientViewExt>(R.id.gradient_view)
         view.maxValue = 120f
         view.minValue = 80f
-
+        view.setDatas(70f, 90f)
     }
 }
