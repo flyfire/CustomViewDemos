@@ -7,7 +7,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
@@ -29,7 +32,7 @@ public class ExpandableTextView extends TextView {
     private final int DEFAULT_MAX_SHOW_LINES = 3;
     private int mMaxShowLines = DEFAULT_MAX_SHOW_LINES;
     private final String ELLIPSE = "...";
-    private final String IMAGE_PLACEHOLDER = "  ";
+    private final String IMAGE_PLACEHOLDER = "中文";
     private String mFullText;
     private int mInitWidth;
     private SpannableStringBuilder mCollapseString,mExpandString;
@@ -108,24 +111,47 @@ public class ExpandableTextView extends TextView {
         mFullText = content;
         Layout workingLayout = createWorkingLayout(content);
         if (workingLayout.getLineCount() > mMaxShowLines) {
+            setMovementMethod(LinkMovementMethod.getInstance());
             int lineEndIndex = workingLayout.getLineEnd(mMaxShowLines - 1);
             Log.d(TAG, "lineEndIndex = " + lineEndIndex);
-            String newText = mFullText.substring(0, lineEndIndex - (ELLIPSE.length() + IMAGE_PLACEHOLDER.length() + 1)) + ELLIPSE + IMAGE_PLACEHOLDER;
-            mCollapseString = new SpannableStringBuilder(newText);
-            mCollapseString.setSpan(mTopicUpSpan, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), 0);
-            mCollapseString.setSpan(new ClickableSpan() {
-                @Override
-                public void onClick(@NonNull View widget) {
-                    showExpand();
-                }
-            }, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), 0);
+            getCollapseString(content, lineEndIndex);
             setText(mCollapseString, BufferType.SPANNABLE);
         } else {
             setText(content);
         }
     }
 
+    private void getCollapseString(String content, int lineEndIndex) {
+        int endIndex = lineEndIndex - 1;
+        while (endIndex > 0) {
+            String tmpStr = content.substring(0, endIndex) + ELLIPSE + IMAGE_PLACEHOLDER;
+            Layout tmpLayout = createWorkingLayout(tmpStr);
+            if (tmpLayout.getLineCount() > mMaxShowLines) {
+                endIndex--;
+            } else {
+                break;
+            }
+        }
+        Log.d(TAG, "endIndex = " + endIndex);
+        String newText = mFullText.substring(0, endIndex) + ELLIPSE + IMAGE_PLACEHOLDER;
+        mCollapseString = new SpannableStringBuilder(newText);
+        mCollapseString.setSpan(mTopicDownSpan, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), 0);
+        mCollapseString.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Log.d(TAG, "showExpand");
+                showExpand();
+            }
+
+            @Override
+            public void updateDrawState(@NonNull TextPaint ds) {
+                ds.setUnderlineText(false);
+            }
+        }, 0, newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+
     private Layout createWorkingLayout(String content) {
+        Log.d(TAG, "width = " + getWidth());
         return new StaticLayout(content, getPaint(), getWidth() - getPaddingLeft() - getPaddingRight(), Layout.Alignment.ALIGN_NORMAL, getLineSpacingMultiplier(),getLineSpacingExtra(), getIncludeFontPadding()  );
     }
 
@@ -151,9 +177,15 @@ public class ExpandableTextView extends TextView {
             mExpandString.setSpan(new ClickableSpan() {
                 @Override
                 public void onClick(@NonNull View widget) {
+                    Log.d(TAG, "showCollapseNew");
                     showCollapseNew();
                 }
-            }, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), 0);
+
+                @Override
+                public void updateDrawState(@NonNull TextPaint ds) {
+                    ds.setUnderlineText(false);
+                }
+            }, 0, newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         setText(mExpandString, BufferType.SPANNABLE);
     }
