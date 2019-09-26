@@ -154,7 +154,7 @@ public class ExpandableTextView extends TextView {
             public void updateDrawState(@NonNull TextPaint ds) {
                 ds.setUnderlineText(false);
             }
-        }, 0, newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     private Layout createWorkingLayout(String content) {
@@ -192,7 +192,7 @@ public class ExpandableTextView extends TextView {
                 public void updateDrawState(@NonNull TextPaint ds) {
                     ds.setUnderlineText(false);
                 }
-            }, 0, newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            }, newText.length() - IMAGE_PLACEHOLDER.length(), newText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         setText(mExpandString, BufferType.SPANNABLE);
     }
