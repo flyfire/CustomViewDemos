@@ -19,9 +19,7 @@ class ExpandTextViewActivity : BaseCustomViewActivity() {
 
     override fun initView() {
         val tv = findViewById<ExpandableTextView>(R.id.tv)
-        tv.text = content
-        tv.post {
-            tv.makeExpandable()
-        }
+//        tv.makeExpandable(content)
+        tv.test(content)
     }
 }
