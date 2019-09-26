@@ -56,6 +56,22 @@ public class ExpandableTextView extends TextView {
     public void makeExpandable() {
         mFullText = getText().toString();
         ViewTreeObserver vto = getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                ViewTreeObserver obs = getViewTreeObserver();
+                obs.removeOnPreDrawListener(this);
+                if (getLineCount() <= mMaxShowLines) {
+                    setText(mFullText);
+                } else {
+                    setMovementMethod(LinkMovementMethod.getInstance());
+                    showCollapse();
+                }
+                return true;
+            }
+        });
+        /*
+        ViewTreeObserver vto = getViewTreeObserver();
         vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -69,6 +85,7 @@ public class ExpandableTextView extends TextView {
                 }
             }
         });
+         */
     }
 
     private void showCollapse() {
