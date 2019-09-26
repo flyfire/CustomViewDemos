@@ -17,4 +17,8 @@
         <item name="android:background">@drawable/flowlayout_text_background</item>
         <item name="android:textColor">#ffffff</item>
     </style>
+
+    <declare-styleable name="ExpandableTextView">
+        <attr name="maxshowlines" format="integer"/>
+    </declare-styleable>
 </resources>
