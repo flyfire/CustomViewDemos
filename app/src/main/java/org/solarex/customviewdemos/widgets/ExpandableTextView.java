@@ -3,6 +3,7 @@ package org.solarex.customviewdemos.widgets;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Layout;
@@ -12,11 +13,14 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import com.solarexsoft.solarexcustomview.utils.Utils;
 
 import org.solarex.customviewdemos.R;
 
@@ -32,7 +36,7 @@ public class ExpandableTextView extends TextView {
     private final int DEFAULT_MAX_SHOW_LINES = 3;
     private int mMaxShowLines = DEFAULT_MAX_SHOW_LINES;
     private final String ELLIPSE = "...";
-    private final String IMAGE_PLACEHOLDER = "中文";
+    private final String IMAGE_PLACEHOLDER = "中";
     private String mFullText;
     private int mInitWidth;
     private SpannableStringBuilder mCollapseString,mExpandString;
@@ -51,8 +55,11 @@ public class ExpandableTextView extends TextView {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        mTopicDownSpan = new ImageSpan(context, R.drawable.expand_textview_topic_down);
+//        mTopicDownSpan = new ImageSpan(context, R.drawable.expand_textview_topic_down);
         mTopicUpSpan = new ImageSpan(context, R.drawable.expand_textview_topic_up);
+        Drawable drawable = context.getResources().getDrawable(R.drawable.expand_textview_topic_down);
+        drawable.setBounds(0,0, (int)Utils.dp2px(22),(int)Utils.dp2px(22));
+        mTopicDownSpan = new ImageSpan(drawable, DynamicDrawableSpan.ALIGN_BOTTOM);
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ExpandableTextView);
             mMaxShowLines = typedArray.getInteger(R.styleable.ExpandableTextView_maxshowlines, DEFAULT_MAX_SHOW_LINES);
