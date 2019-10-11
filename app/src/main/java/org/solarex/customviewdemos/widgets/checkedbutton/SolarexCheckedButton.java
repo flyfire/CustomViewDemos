@@ -54,7 +54,7 @@ public class SolarexCheckedButton extends RadioButton {
 
     private void convertDrawable2TickBitmap(Drawable drawable) {
         mTickBitmap = Bitmap.createBitmap(mTickWidth, mTickHeight, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas = new Canvas(mTickBitmap);
         drawable.setBounds(0, 0, mTickWidth, mTickHeight);
         drawable.draw(canvas);
     }
