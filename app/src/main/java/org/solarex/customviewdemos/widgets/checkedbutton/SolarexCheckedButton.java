@@ -27,6 +27,7 @@ public class SolarexCheckedButton extends RadioButton {
     private int mTickMarginRight = (int)Utils.dp2px(18);
     private int mTickLeft,mTickTop;
     private Paint mTransparentPaint;
+    private Paint mTextPaint;
 
     public SolarexCheckedButton(Context context) {
         super(context);
@@ -71,6 +72,12 @@ public class SolarexCheckedButton extends RadioButton {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        mTextPaint = getPaint();
+        if (isChecked()) {
+            mTextPaint.setFakeBoldText(true);
+        } else {
+            mTextPaint.setFakeBoldText(false);
+        }
         super.onDraw(canvas);
         if (isChecked()) {
             drawTickAtRight(canvas);

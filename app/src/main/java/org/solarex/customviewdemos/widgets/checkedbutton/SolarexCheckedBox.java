@@ -28,6 +28,7 @@ public class SolarexCheckedBox extends CheckBox {
     private int mTickMarginRight = (int)Utils.dp2px(18);
     private int mTickLeft,mTickTop;
     private Paint mTransparentPaint;
+    private Paint mTextPaint;
 
     public SolarexCheckedBox(Context context) {
         super(context);
@@ -72,6 +73,12 @@ public class SolarexCheckedBox extends CheckBox {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        mTextPaint = getPaint();
+        if (isChecked()) {
+            mTextPaint.setFakeBoldText(true);
+        } else {
+            mTextPaint.setFakeBoldText(false);
+        }
         super.onDraw(canvas);
         if (isChecked()) {
             drawTickAtRight(canvas);
