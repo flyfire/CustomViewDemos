@@ -21,7 +21,6 @@ import org.solarex.customviewdemos.R;
  */
 @SuppressLint("AppCompatCustomView")
 public class SolarexCheckedBox extends CheckBox {
-    private int mWidth,mHeight;
     private Bitmap mTickBitmap;
     private int mTickWidth = (int) Utils.dp2px(14f);
     private int mTickHeight = mTickWidth;
@@ -65,8 +64,6 @@ public class SolarexCheckedBox extends CheckBox {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = w;
-        mHeight = h;
         mTickLeft = w - mTickMarginRight - mTickWidth;
         mTickTop = (h - mTickHeight)>>1;
     }

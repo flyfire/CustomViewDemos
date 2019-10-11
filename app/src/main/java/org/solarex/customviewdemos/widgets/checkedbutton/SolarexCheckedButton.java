@@ -20,7 +20,6 @@ import org.solarex.customviewdemos.R;
  */
 @SuppressLint("AppCompatCustomView")
 public class SolarexCheckedButton extends RadioButton {
-    private int mWidth,mHeight;
     private Bitmap mTickBitmap;
     private int mTickWidth = (int)Utils.dp2px(14f);
     private int mTickHeight = mTickWidth;
