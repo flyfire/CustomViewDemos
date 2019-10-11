@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.solarexsoft.solarexcustomview.utils.Utils;
 
 import org.solarex.customviewdemos.R;
+import org.solarex.customviewdemos.widgets.checkedbutton.SolarexCheckedButton;
 
 import java.util.List;
 
@@ -50,7 +51,7 @@ public class DynamicSingleChoiceLayout extends LinearLayout {
         iv_head = view.findViewById(R.id.iv_head);
         tv_title = view.findViewById(R.id.tv_title);
         rg_content = view.findViewById(R.id.rg_content);
-        mTextColorStateList = context.getResources().getColorStateList(R.color.bg_dynamic_single_choice_textcolor);
+        mTextColorStateList = context.getResources().getColorStateList(R.color.questionnaire_textcolor);
     }
 
     public void setupView(DynamicSingleChoiceEntity entity) {
@@ -63,9 +64,9 @@ public class DynamicSingleChoiceLayout extends LinearLayout {
             int size = contents.size();
             for (int i = 0; i < size; i++) {
                 String content = contents.get(i);
-                RadioButton radioButton = new RadioButton(getContext());
+                RadioButton radioButton = new SolarexCheckedButton(getContext());
                 radioButton.setButtonDrawable(null);
-                radioButton.setBackgroundResource(R.drawable.bg_dynamic_single_choice);
+                radioButton.setBackgroundResource(R.drawable.bg_questionnaire);
                 radioButton.setTextColor(mTextColorStateList);
                 RadioGroup.LayoutParams lp = new RadioGroup.LayoutParams(LayoutParams.MATCH_PARENT, (int)Utils.dp2px(50));
                 lp.setMargins(0, 0, 0, (int)Utils.dp2px(10));

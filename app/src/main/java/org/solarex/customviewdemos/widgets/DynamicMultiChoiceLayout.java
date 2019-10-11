@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.solarexsoft.solarexcustomview.utils.Utils;
 
 import org.solarex.customviewdemos.R;
+import org.solarex.customviewdemos.widgets.checkedbutton.SolarexCheckedBox;
 
 import java.util.List;
 
@@ -46,7 +47,7 @@ public class DynamicMultiChoiceLayout extends LinearLayout {
         View view = LayoutInflater.from(context).inflate(R.layout.layout_dynamic_multi_choice, this, true);
         tv_title = view.findViewById(R.id.tv_title);
         ll_content = view.findViewById(R.id.ll_content);
-        mTextColorStateList = context.getResources().getColorStateList(R.color.bg_dynamic_single_choice_textcolor);
+        mTextColorStateList = context.getResources().getColorStateList(R.color.questionnaire_textcolor);
     }
 
     public void setupView(DynamicMultiChoiceEntity entity) {
@@ -57,12 +58,12 @@ public class DynamicMultiChoiceLayout extends LinearLayout {
             int size = contents.size();
             for (int i = 0; i < size; i++) {
                 String s = contents.get(i);
-                CheckBox checkBox = new CheckBox(getContext());
+                CheckBox checkBox = new SolarexCheckedBox(getContext());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) Utils.dp2px(50));
                 lp.setMargins(0, 0, 0, (int)Utils.dp2px(10));
                 checkBox.setLayoutParams(lp);
                 checkBox.setButtonDrawable(null);
-                checkBox.setBackgroundResource(R.drawable.bg_dynamic_single_choice);
+                checkBox.setBackgroundResource(R.drawable.bg_questionnaire);
                 checkBox.setTextColor(mTextColorStateList);
                 checkBox.setGravity(Gravity.CENTER);
                 checkBox.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
