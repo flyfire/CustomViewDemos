@@ -22,7 +22,6 @@ class InputEventStacktraceActivity : BaseCustomViewActivity() {
         view.setOnClickListener {
             Log.d(TAG, "current thread -> ${Thread.currentThread().name}")
             SystemClock.sleep(delay)
-            delay+=10000
         }
     }
 }
