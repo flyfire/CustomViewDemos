@@ -3,6 +3,7 @@ package org.solarex.customviewdemos.widgets.ketonuriatesting;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.support.annotation.Nullable;
@@ -52,6 +53,8 @@ public class CommonTestingView extends View {
     private String mLowText,mHighText;
 
     private int mWidth;
+    private boolean mUseFlagMaxRight = false;
+    private float mProgress;
 
     public CommonTestingView(Context context) {
         this(context, null);
@@ -90,7 +93,35 @@ public class CommonTestingView extends View {
         mTypeWidth = mWidth / 2.0f;
     }
 
-    public void setData(float data) {
+    @Override
+    protected void onDraw(Canvas canvas) {
+        drawFlag(canvas);
+        drawTimestampAndData(canvas);
+        drawTypes(canvas);
+        drawDashLineAndRect(canvas);
+        drawLowHighTextAndMidValue(canvas);
+    }
 
+    private void drawLowHighTextAndMidValue(Canvas canvas) {
+    }
+
+    private void drawDashLineAndRect(Canvas canvas) {
+    }
+
+    private void drawTypes(Canvas canvas) {
+    }
+
+    private void drawTimestampAndData(Canvas canvas) {
+    }
+
+    private void drawFlag(Canvas canvas) {
+    }
+
+    public void setData(float data) {
+        if (data >= mMaxValue) {
+            mUseFlagMaxRight = true;
+        } else {
+            mProgress = data * 1.0f / mMaxValue;
+        }
     }
 }
