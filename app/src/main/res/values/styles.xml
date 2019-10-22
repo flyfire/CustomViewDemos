@@ -28,7 +28,7 @@
         <attr name="highStartColor" format="color"/>
         <attr name="highEndColor" format="color"/>
         <attr name="midValue" format="float"/>
-        <attr name="unit" format="string"/>
+        <attr name="valueUnit" format="string"/>
         <attr name="lowText" format="string"/>
         <attr name="highText" format="string"/>
     </declare-styleable>

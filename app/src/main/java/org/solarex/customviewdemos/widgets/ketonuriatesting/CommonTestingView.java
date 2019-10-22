@@ -86,7 +86,7 @@ public class CommonTestingView extends View {
             BigDecimal bigDecimal = new BigDecimal(midValue).setScale(2, RoundingMode.HALF_UP);
             mMaxValue = bigDecimal.floatValue() * 2;
             mMidValue = String.valueOf(bigDecimal.floatValue());
-            mUnit = typedArray.getString(R.styleable.CommonTestingView_unit);
+            mUnit = typedArray.getString(R.styleable.CommonTestingView_valueUnit);
             mLowText = typedArray.getString(R.styleable.CommonTestingView_lowText);
             mHighText = typedArray.getString(R.styleable.CommonTestingView_highText);
             typedArray.recycle();
