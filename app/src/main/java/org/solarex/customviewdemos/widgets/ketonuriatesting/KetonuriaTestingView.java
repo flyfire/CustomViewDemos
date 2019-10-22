@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -27,6 +28,9 @@ public class KetonuriaTestingView extends View {
     private int COLOR_TEXT_CHECKED = Color.parseColor("#374147");
     private int COLOR_TEXT_UNCHECKED = Color.parseColor("#FFFFFF");
 
+    private int COLOR_TEXT_DATAUNIT = COLOR_TEXT_CHECKED;
+    private int COLOR_TEXT_TIMESTAMP = Color.parseColor("#AAB2B7");
+
     private String TEXT_TYPE1 = "-";
     private String TEXT_TYPE2 = "±";
     private String TEXT_TYPE3 = "＋";
@@ -38,18 +42,27 @@ public class KetonuriaTestingView extends View {
     private String[] typeText = {TEXT_TYPE1, TEXT_TYPE2, TEXT_TYPE3, TEXT_TYPE4, TEXT_TYPE5, TEXT_TYPE6};
 
     Bitmap zhibiaoBitmap;
-    private int checkedIndex = 1;
+    private int mCheckedIndex = 1;
     private int mWidth,mHeight;
     private float mWidthPerType;
     private float mHeightPerType = Utils.dp2px(20f);
     private float mGapBetweenFlagAndText = Utils.dp2px(4f);
     private float mGapBetweenTypeAndBelowText = Utils.dp2px(10f);
     private float mBelowTypeDashLineHeight = Utils.dp2px(50f);
+    private float mGapBetweenTimestampAndDataUnit = Utils.dp2px(6f);
 
     private String LOW_TEXT_BELOW_TYPE = "未检测出\n脂肪消耗";
     private String MEDIUM_TEXT_BELOW_TYPE = "酮体产生增高，\n脂肪消耗逐步增加";
     private String HIGH_TEXT_BELOW_TYPE = "酮体产生过多，\n容易引起酮中毒";
     private String NO_CHECK_TEXT = "未检出";
+    private String DATA_UNIT = "mg/dL(mmol/L)";
+    private String TEXT_TIMESTAMP = "10/14 12:12";
+    private String TEXT_DATA_UNIT = "40(4.0)\n" + DATA_UNIT;
+    private float mDataUnitWidth;
+    private float mFlagWidth = Utils.dp2px(5);
+
+    private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
 
     public KetonuriaTestingView(Context context) {
         this(context, null);
@@ -70,11 +83,58 @@ public class KetonuriaTestingView extends View {
         zhibiaoBitmap = Bitmap.createBitmap((int)Utils.dp2px(5), (int)Utils.dp2px(52), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(zhibiaoBitmap);
         drawable.draw(canvas);
+
+        mPaint.setTextSize(Utils.dp2px(10));
+        mDataUnitWidth = mPaint.measureText(DATA_UNIT);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         mWidth = w;
         mHeight = h;
+        mWidthPerType = w * 1.0f / 6;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        drawFlag(canvas);
+        drawTimeStampAndData(canvas);
+        drawTypes(canvas);
+        drawTextBelowTypes(canvas);
+        drawDashLineBelowTypes(canvas);
+    }
+
+    private void drawDashLineBelowTypes(Canvas canvas) {
+    }
+
+    private void drawTextBelowTypes(Canvas canvas) {
+    }
+
+    private void drawTypes(Canvas canvas) {
+    }
+
+    private void drawTimeStampAndData(Canvas canvas) {
+        float left = (mCheckedIndex - 0.5f) * mWidthPerType;
+        if (mCheckedIndex == 1) {
+            TEXT_DATA_UNIT = NO_CHECK_TEXT;
+        }
+        float dataUnitRight = left + mGapBetweenFlagAndText + mDataUnitWidth;
+        float timeStampAndDataLeft = left + mGapBetweenFlagAndText;
+        if (dataUnitRight >= mWidth) {
+            timeStampAndDataLeft = left - mGapBetweenFlagAndText - mDataUnitWidth;
+        }
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float timestampBaseline = - fontMetrics.top;
+        float dataAndUnitBaseline = fontMetrics.bottom - fontMetrics.top + mGapBetweenTimestampAndDataUnit - fontMetrics.top;
+        mPaint.setColor(COLOR_TEXT_TIMESTAMP);
+        mPaint.setTextSize(Utils.dp2px(10f));
+        canvas.drawText(TEXT_TIMESTAMP, timeStampAndDataLeft, timestampBaseline, mPaint);
+        mPaint.setColor(COLOR_TEXT_DATAUNIT);
+        canvas.drawText(TEXT_DATA_UNIT, timeStampAndDataLeft, dataAndUnitBaseline, mPaint);
+    }
+
+    private void drawFlag(Canvas canvas) {
+        float left = (mCheckedIndex - 0.5f) * mWidthPerType;
+        canvas.drawBitmap(zhibiaoBitmap, left, 0f, null);
     }
 }
