@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -40,8 +41,8 @@ public class CommonTestingView extends View {
     private float mDashLineEndRectHeight = Utils.dp2px(4f);
     private float mGapBetweenTypeAndDashLineEndRect = Utils.dp2px(6f);
     private float mGapBetweenMidValueAndUnit = Utils.dp2px(1f);
-    private float mFlagMaxRight;
-    private float mTypeWidth,mTypeHeight;
+    private float mTypeWidth,mTypeHeight = Utils.dp2px(14f);
+    private float mTypeCircleRadius = Utils.dp2px(7f);
 
     private String DEFAULT_UNIT = "mmol/L";
     private float DEFAULT_MID_VALUE = 1.70f;
@@ -118,6 +119,18 @@ public class CommonTestingView extends View {
     }
 
     private void drawTypes(Canvas canvas) {
+        float mTypeTop = mFlagHeight;
+        LinearGradient linearGradient = new LinearGradient(0f, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mLowStartColor, mLowEndColor, Shader.TileMode.CLAMP);
+        mPaint.setShader(linearGradient);
+        canvas.drawRoundRect(0f, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
+        linearGradient = new LinearGradient(mTypeWidth, mTypeTop, mWidth, mTypeTop + mTypeHeight, mHighStartColor, mHighEndColor, Shader.TileMode.CLAMP);
+        mPaint.setShader(linearGradient);
+        canvas.drawRoundRect(mTypeWidth, mTypeTop, mWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
+        mPaint.setShader(null);
+        mPaint.setColor(mLowEndColor);
+        canvas.drawRect(mTypeWidth - mTypeCircleRadius, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mPaint);
+        mPaint.setColor(mHighStartColor);
+        canvas.drawRect(mTypeWidth, mTypeTop, mTypeWidth + mTypeCircleRadius, mTypeTop + mTypeHeight, mPaint);
     }
 
 
