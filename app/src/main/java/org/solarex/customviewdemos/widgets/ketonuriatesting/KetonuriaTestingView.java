@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -30,6 +31,7 @@ public class KetonuriaTestingView extends View {
 
     private int COLOR_TEXT_DATAUNIT = COLOR_TEXT_CHECKED;
     private int COLOR_TEXT_TIMESTAMP = Color.parseColor("#AAB2B7");
+    private int COLOR_DASHLINE = Color.parseColor("#BAC4CB");
 
     private String TEXT_TYPE1 = "-";
     private String TEXT_TYPE2 = "±";
@@ -50,10 +52,14 @@ public class KetonuriaTestingView extends View {
     private float mGapBetweenTypeAndBelowText = Utils.dp2px(10f);
     private float mBelowTypeDashLineHeight = Utils.dp2px(50f);
     private float mGapBetweenTimestampAndDataUnit = Utils.dp2px(6f);
+    private float mBelowTypeDashLineStrokeWidth = Utils.dp2px(0.5f);
 
-    private String LOW_TEXT_BELOW_TYPE = "未检测出\n脂肪消耗";
-    private String MEDIUM_TEXT_BELOW_TYPE = "酮体产生增高，\n脂肪消耗逐步增加";
-    private String HIGH_TEXT_BELOW_TYPE = "酮体产生过多，\n容易引起酮中毒";
+    private String LOW_TEXT_BELOW_TYPE_1 = "未检测出";
+    private String LOW_TEXT_BELOW_TYPE_2 = "脂肪消耗";
+    private String MEDIUM_TEXT_BELOW_TYPE_1 = "酮体产生增高，";
+    private String MEDIUM_TEXT_BELOW_TYPE_2 = "脂肪消耗逐步增加";
+    private String HIGH_TEXT_BELOW_TYPE_1 = "酮体产生过多，";
+    private String HIGH_TEXT_BELOW_TYPE_2 = "容易引起酮中毒";
     private String NO_CHECK_TEXT = "未检出";
     private String DATA_UNIT = "mg/dL(mmol/L)";
     private String TEXT_TIMESTAMP = "10/14 12:12";
@@ -107,9 +113,38 @@ public class KetonuriaTestingView extends View {
     }
 
     private void drawDashLineBelowTypes(Canvas canvas) {
+        mPaint.setStrokeWidth(mBelowTypeDashLineStrokeWidth);
+        mPaint.setColor(COLOR_DASHLINE);
+        mPaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0f));
+        float startX = 1.0f * mWidthPerType;
+        float startY = mFlagHeight + mHeightPerType;
+        float stopY = startY + mBelowTypeDashLineHeight;
+        canvas.drawLine(startX, startY, startX, stopY, mPaint);
+        startX = 4.0f * mWidthPerType;
+        canvas.drawLine(startX, startY, startX, stopY, mPaint);
+
     }
 
     private void drawTextBelowTypes(Canvas canvas) {
+        mPaint.setColor(COLOR_TEXT_TIMESTAMP);
+        mPaint.setTextSize(Utils.dp2px(10f));
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float textBaseline_1 = mFlagHeight + mHeightPerType + mGapBetweenTypeAndBelowText - fontMetrics.top;
+        float textBaseline_2 = mFlagHeight + mHeightPerType + mGapBetweenTypeAndBelowText + fontMetrics.bottom - fontMetrics.top - fontMetrics.top;
+        float left = 0f;
+        float textWidth = 0f;
+        textWidth = mPaint.measureText(LOW_TEXT_BELOW_TYPE_1);
+        left = (mWidthPerType - textWidth) / 2.0f;
+        canvas.drawText(LOW_TEXT_BELOW_TYPE_1, left, textBaseline_1, mPaint);
+        canvas.drawText(LOW_TEXT_BELOW_TYPE_2, left, textBaseline_2, mPaint);
+        textWidth = mPaint.measureText(MEDIUM_TEXT_BELOW_TYPE_2);
+        left = 2.5f * mWidthPerType - textWidth / 2.0f;
+        canvas.drawText(MEDIUM_TEXT_BELOW_TYPE_1, left, textBaseline_1, mPaint);
+        canvas.drawText(MEDIUM_TEXT_BELOW_TYPE_2, left, textBaseline_2, mPaint);
+        textWidth = mPaint.measureText(HIGH_TEXT_BELOW_TYPE_2);
+        left = 5.0f * mWidthPerType - textWidth / 2.0f;
+        canvas.drawText(HIGH_TEXT_BELOW_TYPE_1, left, textBaseline_1, mPaint);
+        canvas.drawText(HIGH_TEXT_BELOW_TYPE_2, left, textBaseline_2, mPaint);
     }
 
     private void drawTypes(Canvas canvas) {
