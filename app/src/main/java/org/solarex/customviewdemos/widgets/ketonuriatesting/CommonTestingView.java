@@ -37,6 +37,7 @@ public class CommonTestingView extends View {
     private float mGapBetweenTypeAndDashLineEndRect = Utils.dp2px(6f);
     private float mGapBetweenMidValueAndUnit = Utils.dp2px(1f);
     private float mFlagMaxRight;
+    private float mTypeWidth,mTypeHeight;
 
     private String DEFAULT_UNIT = "mmol/L";
     private float DEFAULT_MID_VALUE = 1.70f;
@@ -49,6 +50,8 @@ public class CommonTestingView extends View {
     private String mMidValue = "1.70";
     private String mUnit;
     private String mLowText,mHighText;
+
+    private int mWidth;
 
     public CommonTestingView(Context context) {
         this(context, null);
@@ -79,6 +82,12 @@ public class CommonTestingView extends View {
             mHighText = typedArray.getString(R.styleable.CommonTestingView_highText);
             typedArray.recycle();
         }
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        mWidth = w;
+        mTypeWidth = mWidth / 2.0f;
     }
 
     public void setData(float data) {
