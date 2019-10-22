@@ -1,15 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
-        android:id="@+id/ktv_1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_1"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_2"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_3"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_4"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_5"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.KetonuriaTestingView
+            android:id="@+id/ktv_6"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp" />
+    </LinearLayout>
+</ScrollView>

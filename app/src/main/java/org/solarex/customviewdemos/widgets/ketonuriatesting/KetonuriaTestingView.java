@@ -1,9 +1,7 @@
 package org.solarex.customviewdemos.widgets.ketonuriatesting;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
@@ -63,7 +61,7 @@ public class KetonuriaTestingView extends View {
     private String NO_CHECK_TEXT = "未检出";
     private String DATA_UNIT = "mg/dL(mmol/L)";
     private String TEXT_TIMESTAMP = "10/14 12:12";
-    private String TEXT_DATA_UNIT = "40(4.0)\n" + DATA_UNIT;
+    private String TEXT_DATA = "40(4.0)";
     private float mDataUnitWidth;
     private float mFlagWidth = Utils.dp2px(5);
     private float mFlagHeight = Utils.dp2px(52f);
@@ -186,7 +184,7 @@ public class KetonuriaTestingView extends View {
     private void drawTimeStampAndData(Canvas canvas) {
         float left = (mCheckedIndex - 0.5f) * mWidthPerType;
         if (mCheckedIndex == 1) {
-            TEXT_DATA_UNIT = NO_CHECK_TEXT;
+            TEXT_DATA = NO_CHECK_TEXT;
         }
         float dataUnitRight = left + mFlagWidth + mGapBetweenFlagAndText + mDataUnitWidth;
         float timeStampAndDataLeft = left + mFlagWidth + mGapBetweenFlagAndText;
@@ -195,12 +193,16 @@ public class KetonuriaTestingView extends View {
         }
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         float timestampBaseline = - fontMetrics.top;
-        float dataAndUnitBaseline = fontMetrics.bottom - fontMetrics.top + mGapBetweenTimestampAndDataUnit - fontMetrics.top;
+        float dataBaseline = fontMetrics.bottom - fontMetrics.top + mGapBetweenTimestampAndDataUnit - fontMetrics.top;
+        float unitBaseline = fontMetrics.bottom - fontMetrics.top + mGapBetweenTimestampAndDataUnit + fontMetrics.bottom - fontMetrics.top - fontMetrics.top;
         mPaint.setColor(COLOR_TEXT_TIMESTAMP);
         mPaint.setTextSize(Utils.dp2px(10f));
         canvas.drawText(TEXT_TIMESTAMP, timeStampAndDataLeft, timestampBaseline, mPaint);
         mPaint.setColor(COLOR_TEXT_DATAUNIT);
-        canvas.drawText(TEXT_DATA_UNIT, timeStampAndDataLeft, dataAndUnitBaseline, mPaint);
+        canvas.drawText(TEXT_DATA, timeStampAndDataLeft, dataBaseline, mPaint);
+        if (mCheckedIndex != 1) {
+            canvas.drawText(DATA_UNIT, timeStampAndDataLeft, unitBaseline, mPaint);
+        }
     }
 
     private void drawFlag(Canvas canvas) {
@@ -211,9 +213,9 @@ public class KetonuriaTestingView extends View {
     public void setCheckIndexTimestampAndData(int checkindex, String timestamp, String data) {
         TEXT_TIMESTAMP = timestamp;
         if (checkindex == 1) {
-            TEXT_DATA_UNIT = NO_CHECK_TEXT;
+            TEXT_DATA = NO_CHECK_TEXT;
         } else {
-            TEXT_DATA_UNIT = data + "\n" + DATA_UNIT;
+            TEXT_DATA = data;
         }
         mCheckedIndex = checkindex;
         invalidate();
