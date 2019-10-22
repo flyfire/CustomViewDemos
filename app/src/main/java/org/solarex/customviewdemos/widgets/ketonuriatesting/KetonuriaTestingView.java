@@ -61,6 +61,7 @@ public class KetonuriaTestingView extends View {
     private float mDataUnitWidth;
     private float mFlagWidth = Utils.dp2px(5);
     private float mFlagHeight = Utils.dp2px(52f);
+    private float mTypeCornerRadius = Utils.dp2px(15f);
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -117,14 +118,33 @@ public class KetonuriaTestingView extends View {
         float right = 0f;
         float bottom = top + mHeightPerType;
         mPaint.setTextSize(Utils.dp2px(12f));
-        
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float textBaseline = 0f;
+        float center = top + Utils.dp2px(10f);
+        textBaseline = center - (fontMetrics.top + fontMetrics.bottom) * 1.0f / 2.0f;
+        float textLeft = 0f;
+        float textWidth = 0f;
         for (int i = 0; i < typeText.length; i++) {
             left = i * mWidthPerType;
             right = (i+1) * mWidthPerType;
+            textWidth = mPaint.measureText(typeText[i]);
+            textLeft = (i + 0.5f) * mWidthPerType - textWidth/2.0f;
             mPaint.setColor(typeColors[i]);
             if (i == 0) {
-
+                canvas.drawRoundRect(left, top, right, bottom, mTypeCornerRadius, mTypeCornerRadius, mPaint);
+                canvas.drawRect(right - mTypeCornerRadius, top, right, bottom, mPaint);
+            } else if (i == typeText.length - 1) {
+                canvas.drawRoundRect(left, top, right, bottom, mTypeCornerRadius, mTypeCornerRadius, mPaint);
+                canvas.drawRect(left, top, left + mTypeCornerRadius, bottom, mPaint);
+            } else {
+                canvas.drawRect(left, top, right, bottom, mPaint);
             }
+            if (i == mCheckedIndex) {
+                mPaint.setColor(COLOR_TEXT_CHECKED);
+            } else {
+                mPaint.setColor(COLOR_TEXT_UNCHECKED);
+            }
+            canvas.drawText(typeText[i], textLeft, textBaseline, mPaint);
         }
     }
 
