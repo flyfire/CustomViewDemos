@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -57,6 +59,8 @@ public class CommonTestingView extends View {
     private boolean mUseFlagMaxRight = false;
     private float mProgress;
 
+    private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
     public CommonTestingView(Context context) {
         this(context, null);
     }
@@ -86,6 +90,11 @@ public class CommonTestingView extends View {
             mHighText = typedArray.getString(R.styleable.CommonTestingView_highText);
             typedArray.recycle();
         }
+        mFlagBitmap = Bitmap.createBitmap((int)Utils.dp2px(5f), (int)Utils.dp2px(40f), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(mFlagBitmap);
+        Drawable drawable = context.getResources().getDrawable(R.drawable.ic_zhibiao);
+        drawable.setBounds(0, 0, (int)Utils.dp2px(5f), (int)Utils.dp2px(40f));
+        drawable.draw(canvas);
     }
 
     @Override
@@ -96,8 +105,7 @@ public class CommonTestingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawFlag(canvas);
-        drawTimestampAndData(canvas);
+        drawFlagAndTimestampData(canvas);
         drawTypes(canvas);
         drawDashLineAndRect(canvas);
         drawLowHighTextAndMidValue(canvas);
@@ -112,10 +120,8 @@ public class CommonTestingView extends View {
     private void drawTypes(Canvas canvas) {
     }
 
-    private void drawTimestampAndData(Canvas canvas) {
-    }
 
-    private void drawFlag(Canvas canvas) {
+    private void drawFlagAndTimestampData(Canvas canvas) {
         float flagLeft = 0f;
         if (mUseFlagMaxRight) {
             flagLeft = mWidth - mFlagWidth;
@@ -125,6 +131,23 @@ public class CommonTestingView extends View {
             }
             flagLeft = mProgress * mWidth;
         }
+        canvas.drawBitmap(mFlagBitmap, flagLeft, 0f, null);
+        mPaint.setTextSize(Utils.dp2px(10f));
+        float timestampWidth = mPaint.measureText(mTimestamp);
+        float dataWidth = mPaint.measureText(mData);
+        float maxWidth = timestampWidth > dataWidth ? timestampWidth : dataWidth;
+        float timestampAndDataRight = flagLeft + mFlagWidth + mGapBetweenFlagAndTimestamp + maxWidth;
+        float timestampLeft = flagLeft + mFlagWidth + mGapBetweenFlagAndTimestamp;
+        if (timestampAndDataRight >= mWidth) {
+            timestampLeft = flagLeft - mGapBetweenFlagAndTimestamp - maxWidth;
+        }
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float timestampBaseline = -fontMetrics.top;
+        float dataBaseline = fontMetrics.bottom - fontMetrics.top + mGapBetweenTimestampAndData - fontMetrics.top;
+        mPaint.setColor(COLOR_TIMESTAMP);
+        canvas.drawText(mTimestamp, timestampLeft, timestampBaseline, mPaint);
+        mPaint.setColor(COLOR_DATA);
+        canvas.drawText(mData, timestampLeft, dataBaseline, mPaint);
     }
 
     public void setTimestampAndData(String timestamp, float data) {
