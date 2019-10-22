@@ -60,6 +60,7 @@ public class KetonuriaTestingView extends View {
     private String TEXT_DATA_UNIT = "40(4.0)\n" + DATA_UNIT;
     private float mDataUnitWidth;
     private float mFlagWidth = Utils.dp2px(5);
+    private float mFlagHeight = Utils.dp2px(52f);
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -111,6 +112,20 @@ public class KetonuriaTestingView extends View {
     }
 
     private void drawTypes(Canvas canvas) {
+        float top = mFlagHeight;
+        float left = 0f;
+        float right = 0f;
+        float bottom = top + mHeightPerType;
+        mPaint.setTextSize(Utils.dp2px(12f));
+        
+        for (int i = 0; i < typeText.length; i++) {
+            left = i * mWidthPerType;
+            right = (i+1) * mWidthPerType;
+            mPaint.setColor(typeColors[i]);
+            if (i == 0) {
+
+            }
+        }
     }
 
     private void drawTimeStampAndData(Canvas canvas) {
@@ -118,8 +133,8 @@ public class KetonuriaTestingView extends View {
         if (mCheckedIndex == 1) {
             TEXT_DATA_UNIT = NO_CHECK_TEXT;
         }
-        float dataUnitRight = left + mGapBetweenFlagAndText + mDataUnitWidth;
-        float timeStampAndDataLeft = left + mGapBetweenFlagAndText;
+        float dataUnitRight = left + mFlagWidth + mGapBetweenFlagAndText + mDataUnitWidth;
+        float timeStampAndDataLeft = left + mFlagWidth + mGapBetweenFlagAndText;
         if (dataUnitRight >= mWidth) {
             timeStampAndDataLeft = left - mGapBetweenFlagAndText - mDataUnitWidth;
         }
