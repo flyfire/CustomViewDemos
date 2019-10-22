@@ -61,7 +61,7 @@ public class KetonuriaTestingView extends View {
     private float mDataUnitWidth;
     private float mFlagWidth = Utils.dp2px(5);
     private float mFlagHeight = Utils.dp2px(52f);
-    private float mTypeCornerRadius = Utils.dp2px(15f);
+    private float mTypeCornerRadius = Utils.dp2px(10f);
 
     private Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -139,7 +139,7 @@ public class KetonuriaTestingView extends View {
             } else {
                 canvas.drawRect(left, top, right, bottom, mPaint);
             }
-            if (i == mCheckedIndex) {
+            if ((i+1) == mCheckedIndex) {
                 mPaint.setColor(COLOR_TEXT_CHECKED);
             } else {
                 mPaint.setColor(COLOR_TEXT_UNCHECKED);
@@ -171,5 +171,16 @@ public class KetonuriaTestingView extends View {
     private void drawFlag(Canvas canvas) {
         float left = (mCheckedIndex - 0.5f) * mWidthPerType;
         canvas.drawBitmap(zhibiaoBitmap, left, 0f, null);
+    }
+
+    public void setCheckIndexTimestampAndData(int checkindex, String timestamp, String data) {
+        TEXT_TIMESTAMP = timestamp;
+        if (checkindex == 1) {
+            TEXT_DATA_UNIT = NO_CHECK_TEXT;
+        } else {
+            TEXT_DATA_UNIT = data + "\n" + DATA_UNIT;
+        }
+        mCheckedIndex = checkindex;
+        invalidate();
     }
 }
