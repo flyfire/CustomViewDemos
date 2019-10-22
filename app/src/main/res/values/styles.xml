@@ -21,4 +21,15 @@
     <declare-styleable name="ExpandableTextView">
         <attr name="maxshowlines" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="CommonTestingView">
+        <attr name="lowStartColor" format="color"/>
+        <attr name="lowEndColor" format="color"/>
+        <attr name="highStartColor" format="color"/>
+        <attr name="highEndColor" format="color"/>
+        <attr name="midValue" format="float"/>
+        <attr name="unit" format="string"/>
+        <attr name="lowText" format="string"/>
+        <attr name="highText" format="string"/>
+    </declare-styleable>
 </resources>
