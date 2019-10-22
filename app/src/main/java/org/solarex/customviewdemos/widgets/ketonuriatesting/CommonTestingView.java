@@ -7,6 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -115,13 +116,33 @@ public class CommonTestingView extends View {
     }
 
     private void drawFlag(Canvas canvas) {
+        float flagLeft = 0f;
+        if (mUseFlagMaxRight) {
+            flagLeft = mWidth - mFlagWidth;
+        } else {
+            if (mProgress < 0f) {
+                mProgress = 0f;
+            }
+            flagLeft = mProgress * mWidth;
+        }
     }
 
-    public void setData(float data) {
+    public void setTimestampAndData(String timestamp, float data) {
+        mTimestamp = timestamp;
         if (data >= mMaxValue) {
             mUseFlagMaxRight = true;
         } else {
             mProgress = data * 1.0f / mMaxValue;
         }
+        if (!TextUtils.isEmpty(mUnit)) {
+            mData = formatData(data) + " " + mUnit;
+        } else {
+            mData = formatData(data);
+        }
+    }
+
+    private String formatData(float data) {
+        BigDecimal bigDecimal = new BigDecimal(data).setScale(2, RoundingMode.HALF_UP);
+        return String.valueOf(bigDecimal.floatValue());
     }
 }
