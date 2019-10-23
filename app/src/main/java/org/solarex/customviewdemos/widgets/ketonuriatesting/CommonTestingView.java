@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.solarexsoft.solarexcustomview.utils.Utils;
@@ -21,6 +22,7 @@ import org.solarex.customviewdemos.R;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 public class CommonTestingView extends View {
 
@@ -36,11 +38,9 @@ public class CommonTestingView extends View {
     private Bitmap mFlagBitmap;
     private float mGapBetweenFlagAndTimestamp = Utils.dp2px(4f);
     private float mGapBetweenTimestampAndData = Utils.dp2px(4f);
-    private float mDashLineHeight = Utils.dp2px(10f);
+    private float mDashLineHeight = Utils.dp2px(14f);
     private float mGapBetweenDashAndMidValue = Utils.dp2px(7f);
-    private float mDashLineEndRectWidth = Utils.dp2px(2f);
-    private float mDashLineEndRectHeight = Utils.dp2px(4f);
-    private float mGapBetweenTypeAndDashLineEndRect = Utils.dp2px(6f);
+    private float mGapBetweenTypeAndDashLineEndRect = Utils.dp2px(10f);
     private float mGapBetweenMidValueAndUnit = Utils.dp2px(1f);
     private float mTypeWidth,mTypeHeight = Utils.dp2px(14f);
     private float mTypeCircleRadius = Utils.dp2px(7f);
@@ -52,7 +52,7 @@ public class CommonTestingView extends View {
 
 
     private String mTimestamp = "10/14 12:12";
-    private String mData = "5.5 mmol/L";
+    private String mData = "";
     private String mMidValue = "1.70";
     private String mUnit;
     private String mLowText,mHighText;
@@ -84,9 +84,8 @@ public class CommonTestingView extends View {
             mHighStartColor = typedArray.getColor(R.styleable.CommonTestingView_highStartColor, DEFAULT_HIGH_START_COLOR);
             mHighEndColor = typedArray.getColor(R.styleable.CommonTestingView_highEndColor, DEFAULT_HIGH_END_COLOR);
             float midValue = typedArray.getFloat(R.styleable.CommonTestingView_midValue, DEFAULT_MID_VALUE);
-            BigDecimal bigDecimal = new BigDecimal(midValue).setScale(2, RoundingMode.HALF_UP);
-            mMaxValue = bigDecimal.floatValue() * 2;
-            mMidValue = String.valueOf(bigDecimal.floatValue());
+            mMaxValue = midValue * 2;
+            mMidValue = formatData(midValue);
             mUnit = typedArray.getString(R.styleable.CommonTestingView_valueUnit);
             mLowText = typedArray.getString(R.styleable.CommonTestingView_lowText);
             mHighText = typedArray.getString(R.styleable.CommonTestingView_highText);
@@ -114,6 +113,7 @@ public class CommonTestingView extends View {
     }
 
     private void drawLowHighTextAndMidValue(Canvas canvas) {
+        mPaint.setColor(COLOR_TIMESTAMP);
         mPaint.setTextSize(Utils.dp2px(11f));
         Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
         float textBaseline = mFlagHeight + mTypeHeight + mDashLineHeight + mGapBetweenDashAndMidValue - fontMetrics.top;
@@ -137,6 +137,7 @@ public class CommonTestingView extends View {
         float startX = mTypeWidth;
         float startY = mFlagHeight + mTypeHeight;
         float stopY = startY + mDashLineHeight;
+        mPaint.setColor(COLOR_DASHLINE);
         mPaint.setStrokeWidth(Utils.dp2px(0.5f));
         mPaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
         canvas.drawLine(startX, startY, startX, stopY, mPaint);
@@ -199,6 +200,7 @@ public class CommonTestingView extends View {
         if (data >= mMaxValue) {
             mUseFlagMaxRight = true;
         } else {
+            mUseFlagMaxRight = false;
             mProgress = data * 1.0f / mMaxValue;
         }
         if (!TextUtils.isEmpty(mUnit)) {
@@ -206,10 +208,11 @@ public class CommonTestingView extends View {
         } else {
             mData = formatData(data);
         }
+        invalidate();
     }
 
     private String formatData(float data) {
-        BigDecimal bigDecimal = new BigDecimal(data).setScale(2, RoundingMode.HALF_UP);
-        return String.valueOf(bigDecimal.floatValue());
+        DecimalFormat decimalFormat=new DecimalFormat("0.00");;
+        return decimalFormat.format(data);
     }
 }
