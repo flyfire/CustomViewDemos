@@ -10,7 +10,7 @@ class CommonTestingActivity : BaseCustomViewActivity() {
 
     override fun initView() {
         val ctv_1 = findViewById<CommonTestingView>(R.id.ctv_1)
-        ctv_1.setTimestampAndData("10/21 09:00", 1.7f);
+        ctv_1.setTimestampAndData("10/21 09:00", 3.7f);
         val ctv_2 = findViewById<CommonTestingView>(R.id.ctv_2)
         ctv_2.setTimestampAndData("10/21 09:00", 0.1f);
         val ctv_3 = findViewById<CommonTestingView>(R.id.ctv_3)
