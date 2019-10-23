@@ -114,6 +114,23 @@ public class CommonTestingView extends View {
     }
 
     private void drawLowHighTextAndMidValue(Canvas canvas) {
+        mPaint.setTextSize(Utils.dp2px(11f));
+        Paint.FontMetrics fontMetrics = mPaint.getFontMetrics();
+        float textBaseline = mFlagHeight + mTypeHeight + mDashLineHeight + mGapBetweenDashAndMidValue - fontMetrics.top;
+        float lowTextWidth = mPaint.measureText(mLowText);
+        float midTextWidth = mPaint.measureText(mMidValue);
+        float highTextWidth = mPaint.measureText(mHighText);
+        float lowTextLeft = (mTypeWidth - lowTextWidth) / 2.0f;
+        float midTextLeft = mTypeWidth - midTextWidth/2.0f;
+        float highTextLeft = 1.5f * mTypeWidth - highTextWidth / 2.0f;
+        canvas.drawText(mLowText, lowTextLeft, textBaseline, mPaint);
+        canvas.drawText(mMidValue, midTextLeft, textBaseline, mPaint);
+        canvas.drawText(mHighText, highTextLeft, textBaseline, mPaint);
+        if (!TextUtils.isEmpty(mUnit)) {
+            mPaint.setTextSize(Utils.dp2px(10f));
+            float unitLeft = mTypeWidth + midTextWidth/2.0f + mGapBetweenMidValueAndUnit;
+            canvas.drawText(mUnit, unitLeft, textBaseline, mPaint);
+        }
     }
 
     private void drawDashLineAndRect(Canvas canvas) {

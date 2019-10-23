@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -8,9 +9,79 @@
         android:orientation="vertical">
         <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
             android:id="@+id/ctv_1"
+            app:lowStartColor="#6CD94C"
+            app:lowEndColor="#D0FF68"
+            app:highStartColor="#EA5455"
+            app:highEndColor="#FEB692"
+            app:lowText="正常"
+            app:highText="偏高"
+            app:midValue="1.70"
+            app:valueUnit="mmol/L"
             android:layout_width="match_parent"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
             android:layout_height="90dp"/>
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
+            android:id="@+id/ctv_2"
+            app:lowStartColor="#6CD94C"
+            app:lowEndColor="#D0FF68"
+            app:highStartColor="#EA5455"
+            app:highEndColor="#FEB692"
+            app:lowText="正常"
+            app:highText="偏高"
+            app:midValue="1.70"
+            app:valueUnit="mmol/L"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="90dp"/>
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
+            android:id="@+id/ctv_3"
+            app:lowStartColor="#8465FF"
+            app:lowEndColor="#B19DFF"
+            app:highStartColor="#6CD94C"
+            app:highEndColor="#D0FF68"
+            app:lowText="偏低"
+            app:highText="正常"
+            app:midValue="1.00"
+            app:valueUnit="mmol/L"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="90dp"/>
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
+            android:id="@+id/ctv_4"
+            app:lowStartColor="#6CD94C"
+            app:lowEndColor="#D0FF68"
+            app:highStartColor="#EA5455"
+            app:highEndColor="#FEB692"
+            app:lowText="正常"
+            app:highText="偏高"
+            app:midValue="3.40"
+            app:valueUnit="mmol/L"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="90dp"/>
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
+            android:id="@+id/ctv_5"
+            app:lowStartColor="#6CD94C"
+            app:lowEndColor="#D0FF68"
+            app:highStartColor="#EA5455"
+            app:highEndColor="#FEB692"
+            app:lowText="正常"
+            app:highText="偏高"
+            app:midValue="3.50"
+            app:valueUnit=""
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="90dp"/>
+
     </LinearLayout>
 </ScrollView>
