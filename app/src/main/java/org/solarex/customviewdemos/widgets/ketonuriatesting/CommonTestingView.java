@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
@@ -116,6 +117,19 @@ public class CommonTestingView extends View {
     }
 
     private void drawDashLineAndRect(Canvas canvas) {
+        float startX = mTypeWidth;
+        float startY = mFlagHeight + mTypeHeight;
+        float stopY = startY + mDashLineHeight;
+        mPaint.setStrokeWidth(Utils.dp2px(0.5f));
+        mPaint.setPathEffect(new DashPathEffect(new float[]{5, 5}, 0));
+        canvas.drawLine(startX, startY, startX, stopY, mPaint);
+        float left = mTypeWidth - Utils.dp2px(1f);
+        float top = mFlagHeight + mTypeHeight + mGapBetweenTypeAndDashLineEndRect;
+        float right = mTypeWidth + Utils.dp2px(1f);
+        float bottom = stopY;
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setPathEffect(null);
+        canvas.drawRect(left, top, right, bottom, mPaint);
     }
 
     private void drawTypes(Canvas canvas) {
