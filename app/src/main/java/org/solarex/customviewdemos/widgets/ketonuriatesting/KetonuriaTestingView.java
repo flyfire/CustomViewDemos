@@ -30,6 +30,7 @@ public class KetonuriaTestingView extends View {
     private int COLOR_TEXT_DATAUNIT = COLOR_TEXT_CHECKED;
     private int COLOR_TEXT_TIMESTAMP = Color.parseColor("#AAB2B7");
     private int COLOR_DASHLINE = Color.parseColor("#BAC4CB");
+    private int COLOr_TEXT_NODATA = Color.parseColor("#CFD3D6");
 
     private String TEXT_TYPE1 = "-";
     private String TEXT_TYPE2 = "±";
@@ -42,7 +43,7 @@ public class KetonuriaTestingView extends View {
     private String[] typeText = {TEXT_TYPE1, TEXT_TYPE2, TEXT_TYPE3, TEXT_TYPE4, TEXT_TYPE5, TEXT_TYPE6};
 
     Bitmap zhibiaoBitmap;
-    private int mCheckedIndex = 1;
+    private int mCheckedIndex = -1;
     private int mWidth,mHeight;
     private float mWidthPerType;
     private float mHeightPerType = Utils.dp2px(20f);
@@ -59,6 +60,7 @@ public class KetonuriaTestingView extends View {
     private String HIGH_TEXT_BELOW_TYPE_1 = "酮体产生过多，";
     private String HIGH_TEXT_BELOW_TYPE_2 = "容易引起酮中毒";
     private String NO_CHECK_TEXT = "未检出";
+    private String NO_DATA_TEXT = "无数据";
     private String DATA_UNIT = "mg/dL(mmol/L)";
     private String TEXT_TIMESTAMP = "10/14 12:12";
     private String TEXT_DATA = "40(4.0)";
@@ -103,11 +105,24 @@ public class KetonuriaTestingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawFlag(canvas);
-        drawTimeStampAndData(canvas);
+        if (mCheckedIndex >= 1) {
+            drawFlag(canvas);
+            drawTimeStampAndData(canvas);
+        } else {
+            drawNoDataText(canvas);
+        }
         drawTypes(canvas);
         drawTextBelowTypes(canvas);
         drawDashLineBelowTypes(canvas);
+    }
+
+    private void drawNoDataText(Canvas canvas) {
+        mPaint.setColor(COLOr_TEXT_NODATA);
+        mPaint.setTextSize(Utils.dp2px(16f));
+        float noDataTextWidth = mPaint.measureText(NO_DATA_TEXT);
+        float noDataTextLeft = (mWidth - noDataTextWidth) / 2.0f;
+        float noDataTextBaseline = -mPaint.getFontMetrics().top;
+        canvas.drawText(NO_DATA_TEXT, noDataTextLeft, noDataTextBaseline, mPaint);
     }
 
     private void drawDashLineBelowTypes(Canvas canvas) {

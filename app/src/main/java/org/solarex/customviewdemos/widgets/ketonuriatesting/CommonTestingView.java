@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
@@ -49,6 +51,10 @@ public class CommonTestingView extends View {
     private float DEFAULT_MID_VALUE = 1.70f;
     private float mMaxValue;
     private int mLowStartColor,mLowEndColor,mHighStartColor,mHighEndColor;
+
+    private int DEFAULT_LOW_COLOR = Color.parseColor("#52BAC4CB");
+    private int DEFAULT_HIGH_COLOR = Color.parseColor("#29BAC4CB");
+    private int DEFAULT_COLOR = Color.parseColor("#ffBAC4CB");
 
 
     private String mTimestamp = "10/14 12:12";
@@ -106,10 +112,28 @@ public class CommonTestingView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawFlagAndTimestampData(canvas);
-        drawTypes(canvas);
+        if (!TextUtils.isEmpty(mData)) {
+            drawFlagAndTimestampData(canvas);
+            drawTypes(canvas);
+        } else {
+            drawNoDataTypes(canvas);
+        }
         drawDashLineAndRect(canvas);
         drawLowHighTextAndMidValue(canvas);
+    }
+
+    private void drawNoDataTypes(Canvas canvas) {
+        float mTypeTop = mFlagHeight;
+        mPaint.setColor(DEFAULT_LOW_COLOR);
+        canvas.drawRoundRect(0f, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        canvas.drawRect(mTypeWidth - mTypeCircleRadius, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mPaint);
+        mPaint.setXfermode(null);
+        mPaint.setColor(DEFAULT_HIGH_COLOR);
+        canvas.drawRoundRect(mTypeWidth, mTypeTop, mWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        canvas.drawRect(mTypeWidth, mTypeTop, mTypeWidth + mTypeCircleRadius, mTypeTop + mTypeHeight, mPaint);
+        mPaint.setXfermode(null);
     }
 
     private void drawLowHighTextAndMidValue(Canvas canvas) {

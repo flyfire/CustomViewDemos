@@ -82,6 +82,17 @@
             android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
             android:layout_height="90dp"/>
+        <org.solarex.customviewdemos.widgets.ketonuriatesting.CommonTestingView
+            android:id="@+id/ctv_6"
+            app:lowText="正常"
+            app:highText="偏高"
+            app:midValue="3.50"
+            app:valueUnit=""
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="90dp"/>
 
     </LinearLayout>
 </ScrollView>
