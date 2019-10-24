@@ -124,16 +124,20 @@ public class CommonTestingView extends View {
 
     private void drawNoDataTypes(Canvas canvas) {
         float mTypeTop = mFlagHeight;
+        int layer = canvas.saveLayer(0f, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mPaint);
         mPaint.setColor(DEFAULT_LOW_COLOR);
         canvas.drawRoundRect(0f, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         canvas.drawRect(mTypeWidth - mTypeCircleRadius, mTypeTop, mTypeWidth, mTypeTop + mTypeHeight, mPaint);
         mPaint.setXfermode(null);
+        canvas.restoreToCount(layer);
+        layer = canvas.saveLayer(mTypeWidth, mTypeTop, mWidth, mTypeTop + mTypeHeight, mPaint);
         mPaint.setColor(DEFAULT_HIGH_COLOR);
         canvas.drawRoundRect(mTypeWidth, mTypeTop, mWidth, mTypeTop + mTypeHeight, mTypeCircleRadius, mTypeCircleRadius, mPaint);
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
         canvas.drawRect(mTypeWidth, mTypeTop, mTypeWidth + mTypeCircleRadius, mTypeTop + mTypeHeight, mPaint);
         mPaint.setXfermode(null);
+        canvas.restoreToCount(layer);
     }
 
     private void drawLowHighTextAndMidValue(Canvas canvas) {
