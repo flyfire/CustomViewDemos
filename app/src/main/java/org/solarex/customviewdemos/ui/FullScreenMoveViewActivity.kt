@@ -16,5 +16,8 @@ class FullScreenMoveViewActivity : BaseCustomViewActivity() {
 
     override fun initView() {
         window.statusBarColor = resources.getColor(android.R.color.transparent)
+        window.decorView.setBackgroundColor(resources.getColor(android.R.color.holo_green_light))
+//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
     }
+
 }
