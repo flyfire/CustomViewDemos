@@ -1,10 +1,15 @@
 package org.solarex.customviewdemos.widgets.detecttouchevent;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.Random;
 
 /**
  * <pre>
@@ -15,25 +20,66 @@ import android.view.View;
  */
 
 public class DetectTouchEventView extends View {
+    private int mWidth, mHeight;
+    private int[] COLORS;
+    private Random random;
+    private int mColor;
+    private String TAG;
+
     public DetectTouchEventView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public DetectTouchEventView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public DetectTouchEventView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        init(context, attrs);
+    }
+
+    private void init(Context context, AttributeSet attrs) {
+        Resources resources = context.getResources();
+        COLORS = new int[]{
+                resources.getColor(android.R.color.holo_red_dark),
+                resources.getColor(android.R.color.holo_green_dark),
+                resources.getColor(android.R.color.holo_blue_dark),
+                resources.getColor(android.R.color.holo_red_light),
+                resources.getColor(android.R.color.holo_green_light),
+                resources.getColor(android.R.color.holo_blue_light)
+        };
+        random = new Random();
+        mColor = COLORS[random.nextInt(COLORS.length)];
+        TAG = "Touch-" + getId();
+    }
+
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        mWidth = w;
+        mHeight = h;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawColor(mColor);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
+        Log.d(TAG, "dispatchTouchEvent", new RuntimeException("Touch-" + getId() + "->dispatchTouchEvent").fillInStackTrace());
         return super.dispatchTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent", new RuntimeException("Touch-" + getId() + "->onTouchEvent").fillInStackTrace());
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            return true;
+        }
         return super.onTouchEvent(event);
     }
 }
