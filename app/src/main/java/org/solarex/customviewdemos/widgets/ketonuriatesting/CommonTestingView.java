@@ -54,7 +54,6 @@ public class CommonTestingView extends View {
 
     private int DEFAULT_LOW_COLOR = Color.parseColor("#52BAC4CB");
     private int DEFAULT_HIGH_COLOR = Color.parseColor("#29BAC4CB");
-    private int DEFAULT_COLOR = Color.parseColor("#ffBAC4CB");
 
 
     private String mTimestamp = "10/14 12:12";

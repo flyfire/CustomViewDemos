@@ -30,7 +30,7 @@ public class KetonuriaTestingView extends View {
     private int COLOR_TEXT_DATAUNIT = COLOR_TEXT_CHECKED;
     private int COLOR_TEXT_TIMESTAMP = Color.parseColor("#AAB2B7");
     private int COLOR_DASHLINE = Color.parseColor("#BAC4CB");
-    private int COLOr_TEXT_NODATA = Color.parseColor("#CFD3D6");
+    private int COLOR_TEXT_NODATA = Color.parseColor("#CFD3D6");
 
     private String TEXT_TYPE1 = "-";
     private String TEXT_TYPE2 = "±";
@@ -117,7 +117,7 @@ public class KetonuriaTestingView extends View {
     }
 
     private void drawNoDataText(Canvas canvas) {
-        mPaint.setColor(COLOr_TEXT_NODATA);
+        mPaint.setColor(COLOR_TEXT_NODATA);
         mPaint.setTextSize(Utils.dp2px(16f));
         float noDataTextWidth = mPaint.measureText(NO_DATA_TEXT);
         float noDataTextLeft = (mWidth - noDataTextWidth) / 2.0f;
