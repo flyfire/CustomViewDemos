@@ -14,6 +14,7 @@ import android.view.ViewGroup;
  */
 
 public class DetectTouchEventViewGroup extends ViewGroup {
+    private static final String TAG = "DetectTouchEventViewGro";
     public DetectTouchEventViewGroup(Context context) {
         super(context);
     }
@@ -27,12 +28,18 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     }
 
     @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
+
         return super.dispatchTouchEvent(ev);
     }
 
@@ -47,12 +54,7 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     }
 
     @Override
-    protected LayoutParams generateDefaultLayoutParams() {
-        return super.generateDefaultLayoutParams();
-    }
-
-    @Override
-    protected LayoutParams generateLayoutParams(LayoutParams p) {
-        return super.generateLayoutParams(p);
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(), attrs);
     }
 }
