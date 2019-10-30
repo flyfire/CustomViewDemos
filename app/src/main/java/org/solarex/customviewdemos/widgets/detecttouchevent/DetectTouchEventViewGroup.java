@@ -58,8 +58,15 @@ public class DetectTouchEventViewGroup extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        int left,top,right,bottom;
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
+            MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
+            left = layoutParams.leftMargin;
+            top = layoutParams.topMargin;
+            right = left + child.getMeasuredWidth() + layoutParams.rightMargin;
+            bottom = top + child.getMeasuredHeight() + layoutParams.bottomMargin;
+            child.layout(left, top, right, bottom);
         }
     }
 

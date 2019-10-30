@@ -340,6 +340,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".widgets.detecttouchevent.TouchWithoutContentViewActivity" />
+        <activity android:name=".ui.DetectTouchEventActivity"
+            android:label="DetectTouchEvent">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
