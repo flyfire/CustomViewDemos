@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
         }
 
         ArrayList<Model> models = getData(path);
-        Log.d(TAG, "initData | path = " + path + ",models = " + models);
+//        Log.d(TAG, "initData | path = " + path + ",models = " + models);
         Adapter adapter = new Adapter(models, this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(adapter);
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
 
     @Override
     public void onClick(Intent intent) {
-        Log.d(TAG, "onClick | intent = " + intent);
+//        Log.d(TAG, "onClick | intent = " + intent);
         startActivity(intent);
     }
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
                 String nextLabel = prefixPath == null ? labelPath[0] : labelPath[prefixPath.length];
 
                 int prefixLen = prefixPath != null ? prefixPath.length : 0;
-                Log.d(TAG, "getData | nextLabel = " + nextLabel + ",prefixLen = " + prefixLen);
+//                Log.d(TAG, "getData | nextLabel = " + nextLabel + ",prefixLen = " + prefixLen);
                 if (prefixLen == labelPath.length - 1) {
                     addItem(mModels, nextLabel, activityIntent(info.activityInfo.applicationInfo
                             .packageName, info.activityInfo.name));
@@ -137,14 +137,14 @@ public class MainActivity extends AppCompatActivity implements Adapter.VH.OnClic
     private Intent browserIntent(String path) {
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
-        Log.d(TAG, "browserIntent | path = " + path);
+//        Log.d(TAG, "browserIntent | path = " + path);
         intent.putExtra("solarex_custom_view_path", path);
         return intent;
     }
 
     private void addItem(ArrayList<Model> models, String title, Intent intent) {
         Model tmp = new Model(title, intent);
-        Log.d(TAG, "addItem | tmp = " + tmp);
+//        Log.d(TAG, "addItem | tmp = " + tmp);
         models.add(tmp);
     }
 
