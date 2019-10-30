@@ -3,6 +3,7 @@ package org.solarex.customviewdemos.widgets.detecttouchevent;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -29,12 +30,37 @@ public class DetectTouchEventViewGroup extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+        int measureWidth = 0,measureHeight = 0;
+        if (widthSpecMode == MeasureSpec.EXACTLY && heightSpecMode == MeasureSpec.EXACTLY) {
+            measureWidth = widthSpecSize;
+            measureHeight = heightSpecSize;
+        } else {
+            for (int i = 0; i < getChildCount(); i++) {
+                View child = getChildAt(i);
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
+                MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
+                int childWidth = layoutParams.leftMargin + child.getMeasuredWidth() + layoutParams.rightMargin;
+                if (measureWidth < childWidth) {
+                    measureWidth = childWidth;
+                }
+                int childHeight = layoutParams.topMargin + child.getMeasuredHeight() + layoutParams.bottomMargin;
+                if (measureHeight < childHeight) {
+                    measureHeight = childHeight;
+                }
+            }
+        }
+        setMeasuredDimension(measureWidth, measureHeight);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+        }
     }
 
     @Override
