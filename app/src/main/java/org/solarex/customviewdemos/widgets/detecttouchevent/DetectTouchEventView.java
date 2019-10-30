@@ -89,6 +89,8 @@ public class DetectTouchEventView extends View {
         if (consumeDown && event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
         }
-        return super.onTouchEvent(event);
+        boolean superConsume = super.onTouchEvent(event);
+        Log.d(TAG, "superConsume = " + superConsume + ",onTouchEvent action = " + event.getAction());
+        return superConsume;
     }
 }
