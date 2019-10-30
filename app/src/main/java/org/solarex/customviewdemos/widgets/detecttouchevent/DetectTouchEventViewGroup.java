@@ -8,6 +8,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Random;
+
 /**
  * <pre>
  *    Author: houruhou
@@ -18,6 +20,7 @@ import android.view.ViewGroup;
 
 public class DetectTouchEventViewGroup extends ViewGroup {
     private static final String TAG = "DetectTouchEventViewGro";
+    private Random random;
     public DetectTouchEventViewGroup(Context context) {
         super(context);
     }
@@ -81,7 +84,10 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
-        return super.onInterceptTouchEvent(ev);
+        boolean randomConsume = random.nextBoolean();
+        boolean superConsume = super.onInterceptTouchEvent(ev);
+        Log.d(TAG, "onInterceptTouchEvent randomConsume = " + randomConsume + ",superConsume = " + superConsume);
+        return randomConsume;
     }
 
     @Override
