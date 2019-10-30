@@ -72,12 +72,6 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        canvas.drawColor(getContext().getResources().getColor(android.R.color.darker_gray));
-    }
-
-    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
         return super.dispatchTouchEvent(ev);
