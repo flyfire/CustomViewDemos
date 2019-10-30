@@ -5,7 +5,15 @@
     android:layout_height="wrap_content">
 
     <org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventView
-        android:layout_marginLeft="10dp"
+        android:id="@+id/dtev_1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"/>
+    <org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventView
+        android:id="@+id/dtev_2"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="80dp"
         android:layout_width="250dp"
         android:layout_height="250dp"/>
 </org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewGroup>

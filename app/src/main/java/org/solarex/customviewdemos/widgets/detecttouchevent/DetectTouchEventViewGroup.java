@@ -1,6 +1,7 @@
 package org.solarex.customviewdemos.widgets.detecttouchevent;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -68,6 +69,12 @@ public class DetectTouchEventViewGroup extends ViewGroup {
             bottom = top + child.getMeasuredHeight();
             child.layout(left, top, right, bottom);
         }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.drawColor(getContext().getResources().getColor(android.R.color.darker_gray));
     }
 
     @Override
