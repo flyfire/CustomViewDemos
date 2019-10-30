@@ -31,7 +31,6 @@ public class DetectTouchEventViewGroup extends ViewGroup {
 
     public DetectTouchEventViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        random = new Random();
     }
 
     @Override
@@ -85,6 +84,9 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
+        if (random == null) {
+            random = new Random();
+        }
         boolean randomConsume = random.nextBoolean();
         boolean superConsume = super.onInterceptTouchEvent(ev);
         Log.d(TAG, "onInterceptTouchEvent randomConsume = " + randomConsume + ",superConsume = " + superConsume);
