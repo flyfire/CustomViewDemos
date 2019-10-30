@@ -2,12 +2,15 @@ package org.solarex.customviewdemos.widgets.detecttouchevent;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import org.solarex.customviewdemos.R;
 
 import java.util.Random;
 
@@ -25,6 +28,7 @@ public class DetectTouchEventView extends View {
     private Random random;
     private int mColor;
     private String TAG;
+    private boolean consumeDown;
 
     public DetectTouchEventView(Context context) {
         this(context, null);
@@ -36,6 +40,11 @@ public class DetectTouchEventView extends View {
 
     public DetectTouchEventView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DetectTouchEventView);
+            consumeDown = typedArray.getBoolean(R.styleable.DetectTouchEventView_consumeDown, false);
+            typedArray.recycle();
+        }
         init(context, attrs);
     }
 
@@ -77,7 +86,7 @@ public class DetectTouchEventView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.d(TAG, "onTouchEvent", new RuntimeException("Touch-" + getId() + "->onTouchEvent").fillInStackTrace());
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (consumeDown && event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
         }
         return super.onTouchEvent(event);

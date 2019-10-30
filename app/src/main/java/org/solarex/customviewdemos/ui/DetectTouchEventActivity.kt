@@ -21,10 +21,17 @@ class DetectTouchEventActivity : BaseCustomViewActivity() {
 
     override fun initView() {
         super.initView()
+        val dtev_1 = findViewById<DetectTouchEventView>(R.id.dtev_1)
         val dtev_2 = findViewById<DetectTouchEventView>(R.id.dtev_2)
-        dtev_2.setOnClickListener {
+        val dtev_3 = findViewById<DetectTouchEventView>(R.id.dtev_3)
+        val dtev_4 = findViewById<DetectTouchEventView>(R.id.dtev_4)
+        dtev_3.setOnClickListener {
             Log.d(TAG, "view clicked", RuntimeException("click").fillInStackTrace())
             TouchWithoutContentViewActivity.goTouchWithoutContentViewActivity(this)
         }
+        Log.d(TAG, "1-->${dtev_1.id}")
+        Log.d(TAG, "2-->${dtev_2.id}")
+        Log.d(TAG, "3-->${dtev_3.id}")
+        Log.d(TAG, "4-->${dtev_4.id}")
     }
 }

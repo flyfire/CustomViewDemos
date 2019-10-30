@@ -32,4 +32,8 @@
         <attr name="lowText" format="string"/>
         <attr name="highText" format="string"/>
     </declare-styleable>
+
+    <declare-styleable name="DetectTouchEventView">
+        <attr name="consumeDown" format="boolean"/>
+    </declare-styleable>
 </resources>
