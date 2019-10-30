@@ -31,6 +31,7 @@ public class DetectTouchEventViewGroup extends ViewGroup {
 
     public DetectTouchEventViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        random = new Random();
     }
 
     @Override
