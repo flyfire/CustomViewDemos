@@ -15,7 +15,7 @@ class DetectTouchEventActivity : BaseCustomViewActivity() {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        Log.d(TAG, "dispatchTouchEvent", RuntimeException("dispatchTouchEvent").fillInStackTrace());
+        Log.d(TAG, "dispatchTouchEvent action = " + ev?.action, RuntimeException("dispatchTouchEvent").fillInStackTrace());
         return super.dispatchTouchEvent(ev)
     }
 

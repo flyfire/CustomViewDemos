@@ -74,19 +74,19 @@ public class DetectTouchEventViewGroup extends ViewGroup {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "dispatchTouchEvent");
+        Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction());
         return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "onInterceptTouchEvent");
+        Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent");
+        Log.d(TAG, "onTouchEvent action = " + event.getAction());
         return super.onTouchEvent(event);
     }
 
