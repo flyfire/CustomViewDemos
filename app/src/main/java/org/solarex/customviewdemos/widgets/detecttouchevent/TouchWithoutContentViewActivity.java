@@ -16,7 +16,7 @@ public class TouchWithoutContentViewActivity extends Activity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction(), new RuntimeException("dispatchTouchEvent").fillInStackTrace());
+        Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction()/*, new RuntimeException("dispatchTouchEvent").fillInStackTrace()*/);
         boolean superConsume = super.dispatchTouchEvent(ev);
         Log.d(TAG, "dispatchTouchEvent superConsume = " + superConsume);
         return superConsume;
@@ -24,7 +24,7 @@ public class TouchWithoutContentViewActivity extends Activity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent action = " + event.getAction(), new RuntimeException("onTouchEvent").fillInStackTrace());
+        Log.d(TAG, "onTouchEvent action = " + event.getAction()/*, new RuntimeException("onTouchEvent").fillInStackTrace()*/);
         boolean superConsume = super.onTouchEvent(event);
         Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
         return superConsume;
