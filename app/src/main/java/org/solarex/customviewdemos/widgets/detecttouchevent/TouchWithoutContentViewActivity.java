@@ -27,7 +27,7 @@ public class TouchWithoutContentViewActivity extends Activity {
         try {
             @SuppressLint("PrivateApi")
             Class clz = Class.forName("com.android.internal.policy.PhoneWindow");
-            Field mDecor = clz.getField("mDecor");
+            Field mDecor = clz.getDeclaredField("mDecor");
             mDecor.setAccessible(true);
             Object obj = mDecor.get(getWindow());
             Log.d(TAG, "onCreate decorView = " + obj);
