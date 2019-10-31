@@ -21,6 +21,7 @@ import java.util.Random;
 public class DetectTouchEventViewGroup extends ViewGroup {
     private static final String TAG = "DetectTouchEventViewGro";
     private Random random;
+    boolean randomConsume;
     public DetectTouchEventViewGroup(Context context) {
         super(context);
     }
@@ -87,7 +88,7 @@ public class DetectTouchEventViewGroup extends ViewGroup {
         if (random == null) {
             random = new Random();
         }
-        boolean randomConsume = random.nextBoolean();
+        randomConsume = random.nextBoolean();
         boolean superConsume = super.onInterceptTouchEvent(ev);
         Log.d(TAG, "onInterceptTouchEvent randomConsume = " + randomConsume + ",superConsume = " + superConsume);
         return randomConsume;
@@ -96,7 +97,12 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.d(TAG, "onTouchEvent action = " + event.getAction());
-        return super.onTouchEvent(event);
+        boolean superConsume = super.onTouchEvent(event);
+        Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
+        if (randomConsume && event.getAction() == MotionEvent.ACTION_DOWN) {
+            return true;
+        }
+        return superConsume;
     }
 
     @Override
