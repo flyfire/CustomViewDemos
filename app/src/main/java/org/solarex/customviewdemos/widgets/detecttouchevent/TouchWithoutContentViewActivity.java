@@ -23,6 +23,7 @@ public class TouchWithoutContentViewActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "window = " + getWindow());
         try {
             @SuppressLint("PrivateApi")
             Class clz = Class.forName("com.android.internal.policy.PhoneWindow");
@@ -37,7 +38,8 @@ public class TouchWithoutContentViewActivity extends Activity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction()/*, new RuntimeException("dispatchTouchEvent").fillInStackTrace()*/);
+        Thread.dumpStack();
+        Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction());
         boolean superConsume = super.dispatchTouchEvent(ev);
         Log.d(TAG, "dispatchTouchEvent superConsume = " + superConsume);
         return superConsume;
@@ -45,7 +47,8 @@ public class TouchWithoutContentViewActivity extends Activity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "onTouchEvent action = " + event.getAction()/*, new RuntimeException("onTouchEvent").fillInStackTrace()*/);
+        Thread.dumpStack();
+        Log.d(TAG, "onTouchEvent action = " + event.getAction());
         boolean superConsume = super.onTouchEvent(event);
         Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
         return superConsume;
