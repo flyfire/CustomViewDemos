@@ -37,8 +37,33 @@ public class TouchWithoutContentViewActivity extends Activity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            @SuppressLint("PrivateApi")
+            Class clz = Class.forName("com.android.internal.policy.PhoneWindow");
+            Field mDecor = clz.getDeclaredField("mDecor");
+            mDecor.setAccessible(true);
+            Object obj = mDecor.get(getWindow());
+            Log.d(TAG, "onresume decorView = " + obj);
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Thread.dumpStack();
+        try {
+            @SuppressLint("PrivateApi")
+            Class clz = Class.forName("com.android.internal.policy.PhoneWindow");
+            Field mDecor = clz.getDeclaredField("mDecor");
+            mDecor.setAccessible(true);
+            Object obj = mDecor.get(getWindow());
+            Log.d(TAG, "dispatchTouchEvent decorView = " + obj);
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction());
         boolean superConsume = super.dispatchTouchEvent(ev);
         Log.d(TAG, "dispatchTouchEvent superConsume = " + superConsume);
@@ -48,6 +73,16 @@ public class TouchWithoutContentViewActivity extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Thread.dumpStack();
+        try {
+            @SuppressLint("PrivateApi")
+            Class clz = Class.forName("com.android.internal.policy.PhoneWindow");
+            Field mDecor = clz.getDeclaredField("mDecor");
+            mDecor.setAccessible(true);
+            Object obj = mDecor.get(getWindow());
+            Log.d(TAG, "onTouchEvent decorView = " + obj);
+        } catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
         Log.d(TAG, "onTouchEvent action = " + event.getAction());
         boolean superConsume = super.onTouchEvent(event);
         Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
