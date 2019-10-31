@@ -15,8 +15,19 @@ class DetectTouchEventActivity : BaseCustomViewActivity() {
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        Log.d(TAG, "dispatchTouchEvent action = " + ev?.action, RuntimeException("dispatchTouchEvent").fillInStackTrace());
-        return super.dispatchTouchEvent(ev)
+//        Log.d(TAG, "dispatchTouchEvent action = " + ev?.action, RuntimeException("dispatchTouchEvent").fillInStackTrace());
+        Log.d(TAG, "dispatchTouchEvent action = " + ev?.action);
+        val superConsume = super.dispatchTouchEvent(ev)
+        Log.d(TAG, "dispatchTouchEvent superConsume = $superConsume")
+        return superConsume
+    }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+//        Log.d(TAG, "onTouchEvent action = ${event?.action}", RuntimeException("onTouchEvent").fillInStackTrace())
+        Log.d(TAG, "onTouchEvent action = ${event?.action}")
+        val superConsume = super.onTouchEvent(event)
+        Log.d(TAG, "onTouchEvent superConsume = $superConsume")
+        return superConsume
     }
 
     override fun initView() {
