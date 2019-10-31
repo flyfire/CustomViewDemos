@@ -79,13 +79,13 @@ public class DetectTouchEventView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        Log.d(TAG, "dispatchTouchEvent action = " + event.getAction(), new RuntimeException("Touch-" + getId() + "->dispatchTouchEvent").fillInStackTrace());
+        Log.d(TAG, "dispatchTouchEvent action = " + event.getAction() /*, new RuntimeException("Touch-" + getId() + "->dispatchTouchEvent").fillInStackTrace()*/);
         return super.dispatchTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d(TAG, "consume = " + consumeDown + ",onTouchEvent action = " + event.getAction(), new RuntimeException("Touch-" + getId() + "->onTouchEvent").fillInStackTrace());
+        Log.d(TAG, "consume = " + consumeDown + ",onTouchEvent action = " + event.getAction() /*, new RuntimeException("Touch-" + getId() + "->onTouchEvent").fillInStackTrace()*/);
         if (consumeDown && event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
         }

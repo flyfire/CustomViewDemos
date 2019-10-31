@@ -17,12 +17,16 @@ public class TouchWithoutContentViewActivity extends Activity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction(), new RuntimeException("dispatchTouchEvent").fillInStackTrace());
-        return super.dispatchTouchEvent(ev);
+        boolean superConsume = super.dispatchTouchEvent(ev);
+        Log.d(TAG, "dispatchTouchEvent superConsume = " + superConsume);
+        return superConsume;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.d(TAG, "onTouchEvent action = " + event.getAction(), new RuntimeException("onTouchEvent").fillInStackTrace());
-        return super.onTouchEvent(event);
+        boolean superConsume = super.onTouchEvent(event);
+        Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
+        return superConsume;
     }
 }
