@@ -98,7 +98,7 @@ public class DetectTouchEventViewGroup extends ViewGroup {
     public boolean onTouchEvent(MotionEvent event) {
         Log.d(TAG, "onTouchEvent action = " + event.getAction());
         boolean superConsume = super.onTouchEvent(event);
-        Log.d(TAG, "onTouchEvent superConsume = " + superConsume);
+        Log.d(TAG, "onTouchEvent randomConsume = " + randomConsume + ",superConsume = " + superConsume);
         if (randomConsume && event.getAction() == MotionEvent.ACTION_DOWN) {
             return true;
         }
