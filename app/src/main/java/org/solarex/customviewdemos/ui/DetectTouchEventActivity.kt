@@ -36,6 +36,8 @@ class DetectTouchEventActivity : BaseCustomViewActivity() {
         val dtev_2 = findViewById<DetectTouchEventView>(R.id.dtev_2)
         val dtev_3 = findViewById<DetectTouchEventView>(R.id.dtev_3)
         val dtev_4 = findViewById<DetectTouchEventView>(R.id.dtev_4)
+        val dtev_5 = findViewById<DetectTouchEventView>(R.id.dtev_5)
+        val dtev_6 = findViewById<DetectTouchEventView>(R.id.dtev_6)
         dtev_3.setOnClickListener {
             Log.d(TAG, "view clicked", RuntimeException("click").fillInStackTrace())
             TouchWithoutContentViewActivity.goTouchWithoutContentViewActivity(this)
@@ -44,5 +46,7 @@ class DetectTouchEventActivity : BaseCustomViewActivity() {
         Log.d(TAG, "2-->${dtev_2.id}")
         Log.d(TAG, "3-->${dtev_3.id}")
         Log.d(TAG, "4-->${dtev_4.id}")
+        Log.d(TAG, "5-->${dtev_5.id}")
+        Log.d(TAG, "6-->${dtev_6.id}")
     }
 }
