@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewGroupEx
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/c_6CD94C">
+
+    <org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewEx
+        android:id="@+id/dteve_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        app:consumeDown="true"/>
+
+    <org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewEx
+        android:id="@+id/dteve_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="120dp"
+        app:consumeDown="true"/>
+
+    <org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewEx
+        android:id="@+id/dteve_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="140dp" />
+
+</org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventViewGroupEx>

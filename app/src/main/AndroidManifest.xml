@@ -342,7 +342,14 @@
         <activity android:name=".widgets.detecttouchevent.TouchWithoutContentViewActivity"
             android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
         <activity android:name=".ui.DetectTouchEventActivity"
-            android:label="DetectTouchEvent">
+            android:label="DetectTouchEvent/0original">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".widgets.detecttouchevent.DetectTouchEventActivityEx"
+            android:label="DetectTouchEvent/1extended">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>
