@@ -85,7 +85,7 @@ public class DetectTouchEventViewGroupEx extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
-        Class<DetectTouchEventViewGroupEx> clz = DetectTouchEventViewGroupEx.class;
+        Class<ViewGroup> clz = ViewGroup.class;
         try {
             Field mGroupFlags = clz.getDeclaredField("mGroupFlags");
             mGroupFlags.setAccessible(true);

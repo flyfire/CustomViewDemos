@@ -1,6 +1,7 @@
 package org.solarex.customviewdemos.widgets.detecttouchevent
 
 import android.util.Log
+import android.view.MotionEvent
 import org.solarex.customviewdemos.R
 import org.solarex.customviewdemos.ui.BaseCustomViewActivity
 
@@ -19,5 +20,8 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
         Log.d(TAG, "ex-1-> ${dteve_1.id}")
         Log.d(TAG, "ex-2-> ${dteve_2.id}")
         Log.d(TAG, "ex-3-> ${dteve_3.id}")
+        Log.d(TAG, "DOWN = ${MotionEvent.ACTION_DOWN}")
+        Log.d(TAG, "MOVE = ${MotionEvent.ACTION_MOVE}")
+        Log.d(TAG, "UP = ${MotionEvent.ACTION_UP}")
     }
 }
