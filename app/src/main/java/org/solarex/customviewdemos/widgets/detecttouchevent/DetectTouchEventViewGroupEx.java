@@ -79,12 +79,6 @@ public class DetectTouchEventViewGroupEx extends ViewGroup {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Log.d(TAG, "dispatchTouchEvent action = " + ev.getAction());
-        return super.dispatchTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
         Class<ViewGroup> clz = ViewGroup.class;
         try {
             Field mGroupFlags = clz.getDeclaredField("mGroupFlags");
@@ -92,12 +86,18 @@ public class DetectTouchEventViewGroupEx extends ViewGroup {
             Integer flag = mGroupFlags.getInt(this);
             int FLAG_DISALLOW_INTERCEPT = 0x80000;
             boolean disallowIntercept = (flag & FLAG_DISALLOW_INTERCEPT) != 0;
-            Log.d(TAG, "onInterceptTouchEvent disallow = " + disallowIntercept);
+            Log.d(TAG, "dispatchTouchEvent disallow = " + disallowIntercept);
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        Log.d(TAG, "onInterceptTouchEvent action = " + ev.getAction());
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
             Log.d(TAG, "onInterceptTouchEvent return false");
             return false;
