@@ -89,7 +89,7 @@ public class DetectTouchEventViewEx extends View {
             case MotionEvent.ACTION_MOVE:
                 int deltaY = y - mLastY;
                 Log.d(TAG, "dispatchTouchEvent deltaY = " + deltaY);
-                if (deltaY > 100) {
+                if (deltaY > 10) {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
                 break;

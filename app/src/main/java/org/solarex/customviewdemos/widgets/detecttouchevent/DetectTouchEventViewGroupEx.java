@@ -99,8 +99,10 @@ public class DetectTouchEventViewGroupEx extends ViewGroup {
             e.printStackTrace();
         }
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            Log.d(TAG, "onInterceptTouchEvent return false");
             return false;
         } else {
+            Log.d(TAG, "onInterceptTouchEvent return true");
             return true;
         }
     }
