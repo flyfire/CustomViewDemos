@@ -23,5 +23,6 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
         Log.d(TAG, "DOWN = ${MotionEvent.ACTION_DOWN}")
         Log.d(TAG, "MOVE = ${MotionEvent.ACTION_MOVE}")
         Log.d(TAG, "UP = ${MotionEvent.ACTION_UP}")
+        Log.d(TAG, "CANCEL = ${MotionEvent.ACTION_CANCEL}")
     }
 }
