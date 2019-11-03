@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
@@ -52,8 +53,49 @@ public class HorizontalScrollViewEx extends ViewGroup {
     }
 
     @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int measuredWidth = 0;
+        int measuredHeight = 0;
+        int childCount = getChildCount();
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
 
+        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSpecSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        if (childCount == 0) {
+            setMeasuredDimension(0, 0);
+        } else if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
+            View childView = getChildAt(0);
+            measuredWidth = childView.getMeasuredWidth() * childCount;
+            measuredHeight = childView.getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, measuredHeight);
+        } else if (heightSpecMode == MeasureSpec.AT_MOST) {
+            View childView = getChildAt(0);
+            measuredHeight = childView.getMeasuredHeight();
+            setMeasuredDimension(widthMeasureSpec, measuredHeight);
+        } else if (widthSpecMode == MeasureSpec.AT_MOST) {
+            View childView = getChildAt(0);
+            measuredWidth = childView.getMeasuredWidth() * childCount;
+            setMeasuredDimension(measuredWidth, heightMeasureSpec);
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        int childLeft = 0;
+        int childCount = getChildCount();
+
+        for (int i = 0; i < childCount; i++) {
+            View childView = getChildAt(i);
+            if (childView.getVisibility() != View.GONE) {
+                int childWidth = childView.getMeasuredWidth();
+                childView.layout(childLeft, 0, childLeft + childWidth, childView.getMeasuredHeight());
+                childLeft += childWidth;
+            }
+        }
     }
 
     @Override
