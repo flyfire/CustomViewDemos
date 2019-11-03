@@ -192,4 +192,10 @@ public class HorizontalScrollViewEx extends ViewGroup {
             postInvalidate();
         }
     }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        mVelocityTracker.clear();
+        super.onDetachedFromWindow();
+    }
 }
