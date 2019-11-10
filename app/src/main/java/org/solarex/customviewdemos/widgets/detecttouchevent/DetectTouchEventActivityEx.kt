@@ -31,7 +31,8 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
             val handler = Handler(Looper.myLooper()){
                 when(it.what) {
                     100 -> {
-                       SystemClock.sleep(3000)
+                        Log.d("solarex-dump", "100 invoked")
+                        SystemClock.sleep(3000)
                     }
                     200 -> {
                         Log.d("solarex-dump", "200 invoked")
