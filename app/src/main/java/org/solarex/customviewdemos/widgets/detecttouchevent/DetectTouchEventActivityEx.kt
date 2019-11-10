@@ -29,16 +29,23 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
         Thread{
             Looper.prepare();
             val handler = Handler(Looper.myLooper()){
-                if (it.what == 100) {
-                    SystemClock.sleep(5000)
+                when(it.what) {
+                    100 -> {
+                       SystemClock.sleep(3000)
+                    }
+                    200 -> {
+                        Log.d("solarex-dump", "200 invoked")
+                    }
                 }
                 true
             }
-            dumpMessages()
             handler.sendEmptyMessage(100)
+            dumpMessages()
+            Log.d("solarex-dump", "------------------")
             // WindowManager.BadTokenException
             // TN handler handleShow WindowManager.addView ViewRootImpl.setView ViewRootImpl.requestLayout ViewRootImpl.checkThread
             Toast.makeText(this, "solarex", Toast.LENGTH_SHORT).show()
+            handler.sendEmptyMessage(200)
             dumpMessages()
             Looper.loop();
         }.start()
@@ -50,13 +57,17 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
         val mMessagesField = MessageQueue::class.java.declaredFields.first { it.name == "mMessages" }.also { it.isAccessible = true }
         val messageQueue = mQueueField.get(Looper.myLooper())
         val message = mMessagesField.get(messageQueue)
-        doDumpMessages(message as Message)
+        if (message != null) {
+            doDumpMessages(message as Message)
+        }
     }
     private fun doDumpMessages(message: Message) {
         if (message != null) {
             Log.d("solarex-dump", message.toString())
             val next = nextField.get(message)
-            doDumpMessages(next as Message)
+            if (next != null) {
+                doDumpMessages(next as Message)
+            }
         }
     }
 }
