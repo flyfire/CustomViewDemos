@@ -2,6 +2,7 @@ package org.solarex.customviewdemos.widgets.detecttouchevent
 
 import android.os.*
 import android.util.Log
+import android.util.LogPrinter
 import android.view.MotionEvent
 import android.widget.Toast
 import org.solarex.customviewdemos.R
@@ -41,13 +42,15 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
                 true
             }
             handler.sendEmptyMessage(100)
-            dumpMessages()
+//            dumpMessages()
+            dumpMessagesMethod()
             Log.d("solarex-dump", "------------------")
             // WindowManager.BadTokenException
             // TN handler handleShow WindowManager.addView ViewRootImpl.setView ViewRootImpl.requestLayout ViewRootImpl.checkThread
             Toast.makeText(this, "solarex", Toast.LENGTH_SHORT).show()
             handler.sendEmptyMessage(200)
-            dumpMessages()
+//            dumpMessages()
+            dumpMessagesMethod()
             Looper.loop();
         }.start()
     }
@@ -70,5 +73,12 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
                 doDumpMessages(next as Message)
             }
         }
+    }
+
+    fun dumpMessagesMethod() {
+        val mQueueField = Looper::class.java.declaredFields.first { it.name == "mQueue" }.also { it.isAccessible = true }
+        val messageQueue = mQueueField.get(Looper.myLooper())
+        val dumpMethod = MessageQueue::class.java.declaredMethods.first { it.name == "dump" }.also { it.isAccessible = true }
+        dumpMethod.invoke(messageQueue, LogPrinter(Log.DEBUG, "solarex-dump"), "Test", null)
     }
 }
