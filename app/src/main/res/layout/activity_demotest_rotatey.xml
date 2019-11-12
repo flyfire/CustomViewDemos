@@ -29,7 +29,7 @@
         android:layout_marginTop="30dp"
         android:textSize="12dp"
         android:textColor="@color/c_FD6090"
-        android:text="rotate 45"
+        android:text="rotatey 45"
         android:gravity="center"
         android:background="@color/c_76D5FF"/>
 
@@ -43,7 +43,7 @@
         android:layout_marginTop="30dp"
         android:textSize="12dp"
         android:textColor="@color/c_FD6090"
-        android:text="rotate 90"
+        android:text="rotatey 90"
         android:gravity="center"
         android:background="@color/c_76D5FF"/>
 
@@ -57,7 +57,7 @@
         android:layout_marginTop="30dp"
         android:textSize="12dp"
         android:textColor="@color/c_FD6090"
-        android:text="rotate 135"
+        android:text="rotatey 135"
         android:gravity="center"
         android:background="@color/c_76D5FF"/>
     <TextView
@@ -70,7 +70,7 @@
         android:layout_marginTop="30dp"
         android:textSize="12dp"
         android:textColor="@color/c_FD6090"
-        android:text="rotate 180"
+        android:text="rotatey 180"
         android:gravity="center"
         android:background="@color/c_76D5FF"/>
     <TextView
@@ -83,9 +83,75 @@
         android:layout_marginTop="30dp"
         android:textSize="12dp"
         android:textColor="@color/c_FD6090"
-        android:text="rotate 270"
+        android:text="rotatey 270"
         android:gravity="center"
         android:background="@color/c_76D5FF"/>
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@+id/right_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv5"
+        android:layout_marginTop="30dp"
+        android:textSize="12dp"
+        android:textColor="@color/c_FD6090"
+        android:text="rotatex 45"
+        android:gravity="center"
+        android:background="@color/c_76D5FF"/>
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@+id/right_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv6"
+        android:layout_marginTop="30dp"
+        android:textSize="12dp"
+        android:textColor="@color/c_FD6090"
+        android:text="rotatex 90"
+        android:gravity="center"
+        android:background="@color/c_76D5FF"/>
+    <TextView
+        android:id="@+id/tv8"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@+id/right_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv7"
+        android:layout_marginTop="30dp"
+        android:textSize="12dp"
+        android:textColor="@color/c_FD6090"
+        android:text="rotatex 135"
+        android:gravity="center"
+        android:background="@color/c_76D5FF"/>
+    <TextView
+        android:id="@+id/tv9"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@+id/right_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv8"
+        android:layout_marginTop="30dp"
+        android:textSize="12dp"
+        android:textColor="@color/c_FD6090"
+        android:text="rotatex 180"
+        android:gravity="center"
+        android:background="@color/c_76D5FF"/>
+    <TextView
+        android:id="@+id/tv10"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toRightOf="@+id/left_guideline"
+        app:layout_constraintRight_toLeftOf="@+id/right_guide"
+        app:layout_constraintTop_toBottomOf="@+id/tv9"
+        android:layout_marginTop="30dp"
+        android:textSize="12dp"
+        android:textColor="@color/c_FD6090"
+        android:text="rotatex 270"
+        android:gravity="center"
+        android:background="@color/c_76D5FF"/>
+
 
 
 </android.support.constraint.ConstraintLayout>

@@ -32,5 +32,16 @@ public class DemoTestRoateY extends BaseCustomViewActivity {
         tv3.animate().rotationY(135f).setDuration(3000).start();
         tv4.animate().rotationY(180f).setDuration(3000).start();
         tv5.animate().rotationY(270f).setDuration(3000).start();
+        TextView tv6 = findViewById(R.id.tv6);
+        TextView tv7 = findViewById(R.id.tv7);
+        TextView tv8 = findViewById(R.id.tv8);
+        TextView tv9 = findViewById(R.id.tv9);
+        TextView tv10 = findViewById(R.id.tv10);
+        tv6.animate().rotationX(45f).setDuration(3000).start();
+        tv7.animate().rotationX(90f).setDuration(3000).start();
+        tv8.animate().rotationX(135f).setDuration(3000).start();
+        tv9.animate().rotationX(180f).setDuration(3000).start();
+        tv10.animate().rotationX(270f).setDuration(3000).start();
+
     }
 }
