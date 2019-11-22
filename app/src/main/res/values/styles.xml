@@ -36,4 +36,12 @@
     <declare-styleable name="DetectTouchEventView">
         <attr name="consumeDown" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="OnlineStatusAvatarView">
+        <attr name="innerDotColor" format="color"/>
+        <attr name="innerDotRadius" format="dimension"/>
+        <attr name="outerDotColor" format="color"/>
+        <attr name="outerDotRadius" format="dimension"/>
+        <attr name="shouldDrawDot" format="boolean"/>
+    </declare-styleable>
 </resources>
