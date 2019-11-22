@@ -355,8 +355,17 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        
         <activity android:name=".ui.OnlineStatusAvatarActivity"
             android:label="OnlineStatusAvatar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.DemoTestRoateY"
+            android:label="ZDemoTest/DemoTestRotateY">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="solarex.intent.category.customview"/>

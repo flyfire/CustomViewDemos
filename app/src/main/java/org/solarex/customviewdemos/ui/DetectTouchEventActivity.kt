@@ -5,7 +5,6 @@ import android.view.MotionEvent
 import org.solarex.customviewdemos.R
 import org.solarex.customviewdemos.widgets.detecttouchevent.DetectTouchEventView
 import org.solarex.customviewdemos.widgets.detecttouchevent.TouchWithoutContentViewActivity
-import java.lang.RuntimeException
 
 class DetectTouchEventActivity : BaseCustomViewActivity() {
     val TAG = DetectTouchEventActivity::class.java.simpleName

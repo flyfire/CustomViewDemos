@@ -1,9 +1,6 @@
 package org.solarex.customviewdemos.widgets.detecttouchevent
 
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
-import android.os.SystemClock
+import android.os.*
 import android.util.Log
 import android.view.MotionEvent
 import android.widget.Toast
@@ -32,16 +29,59 @@ class DetectTouchEventActivityEx : BaseCustomViewActivity() {
         Thread{
             Looper.prepare();
             val handler = Handler(Looper.myLooper()){
-                if (it.what == 100) {
-                    SystemClock.sleep(5000)
+                when(it.what) {
+                    100 -> {
+                        Log.d("solarex-dump", "100 invoked")
+                        SystemClock.sleep(3000)
+                    }
+                    200 -> {
+                        Log.d("solarex-dump", "200 invoked")
+                    }
                 }
                 true
             }
             handler.sendEmptyMessage(100)
+            dumpMessages()
+//            dumpMessagesMethod()
+            Log.d("solarex-dump", "------------------")
             // WindowManager.BadTokenException
             // TN handler handleShow WindowManager.addView ViewRootImpl.setView ViewRootImpl.requestLayout ViewRootImpl.checkThread
             Toast.makeText(this, "solarex", Toast.LENGTH_SHORT).show()
+            handler.sendEmptyMessage(200)
+            dumpMessages()
+//            dumpMessagesMethod()
             Looper.loop();
         }.start()
+    }
+
+    val nextField = Message::class.java.declaredFields.first { it.name == "next" }.also { it.isAccessible = true }
+    fun dumpMessages() {
+        val mQueueField = Looper::class.java.declaredFields.first { it.name == "mQueue" }.also { it.isAccessible = true }
+        val mMessagesField = MessageQueue::class.java.declaredFields.first { it.name == "mMessages" }.also { it.isAccessible = true }
+        val messageQueue = mQueueField.get(Looper.myLooper())
+        val message = mMessagesField.get(messageQueue)
+        if (message != null) {
+            doDumpMessages(message as Message)
+        }
+    }
+    private fun doDumpMessages(message: Message) {
+        if (message != null) {
+            Log.d("solarex-dump", message.toString())
+            val next = nextField.get(message)
+            if (next != null) {
+                doDumpMessages(next as Message)
+            }
+        }
+    }
+
+    fun dumpMessagesMethod() {
+        val mQueueField = Looper::class.java.declaredFields.first { it.name == "mQueue" }.also { it.isAccessible = true }
+        val messageQueue = mQueueField.get(Looper.myLooper())
+        // android 9 已被限制
+//        val dumpMethod = MessageQueue::class.java.declaredMethods.first { it.name == "dump" }.also { it.isAccessible = true }
+//        dumpMethod.invoke(messageQueue, LogPrinter(Log.DEBUG, "solarex-dump"), "Test", null)
+        MessageQueue::class.java.declaredMethods.forEach {
+            Log.d("solarex-test", it.name)
+        }
     }
 }
