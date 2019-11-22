@@ -24,11 +24,12 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
 
     private static final int DEFAULT_OUTER_RADIUS = (int) Utils.dp2px(6f);
     private static final int DEFAULT_OUTER_COLOR = Color.parseColor("#ffffff");
-    private static final int DEFAULT_INNER_RADIUS = (int) Utils.dp2px(5f);
+    private static final int DEFAULT_INNER_RADIUS = (int) Utils.dp2px(4f);
     private static final int DEFAULT_INNER_COLOR = Color.parseColor("#d1d7da");
 
     private static final int ONLINE_COLOR = Color.parseColor("#00D5A8");
     private static final int OFFLINE_COLOR = Color.parseColor("#D1D7DA");
+    public static final int STATUS_ONLINE = 0, STATUS_OFFLINE = 1;
 
     private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
     private static final int COLORDRAWABLE_DIMENSION = 2;
@@ -82,8 +83,8 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
         super.onSizeChanged(w, h, oldw, oldh);
         mWidth = w;
         mRadius = mWidth/2;
-        innerDotCenter = mWidth - mInnerRadius - (int)Utils.dp2px(2f);
         outerDotCenter = mWidth - mOuterRadius - (int)Utils.dp2px(2f);
+        initializeBitmap();
     }
 
     @Override
@@ -94,7 +95,7 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
         canvas.drawCircle(mRadius, mRadius, mRadius, mBitmapPaint);
         if (mShouldDrawDot) {
             canvas.drawCircle(outerDotCenter, outerDotCenter, mOuterRadius, mOuterDotPaint);
-            canvas.drawCircle(innerDotCenter, innerDotCenter, mInnerRadius, mInnerDotPaint);
+            canvas.drawCircle(outerDotCenter, outerDotCenter, mInnerRadius, mInnerDotPaint);
         }
     }
 
@@ -128,6 +129,19 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
     }
 
     private void setup() {
+        if (mBitmapPaint == null) {
+            mBitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        }
+        if (mInnerDotPaint == null) {
+            mInnerDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mInnerDotPaint.setStyle(Paint.Style.FILL);
+        }
+        mInnerDotPaint.setColor(mInnerColor);
+        if (mOuterDotPaint == null) {
+            mOuterDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mOuterDotPaint.setStyle(Paint.Style.FILL);
+        }
+        mOuterDotPaint.setColor(mOuterColor);
         if (getWidth() == 0 && getHeight() == 0) {
             return;
         }
@@ -135,24 +149,8 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
         if (mBitmap == null) {
             return;
         }
-
         mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        if (mBitmapPaint == null) {
-            mBitmapPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        }
-        mBitmapPaint.setAntiAlias(true);
         mBitmapPaint.setShader(mBitmapShader);
-
-        if (mInnerDotPaint == null) {
-            mInnerDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        }
-        mInnerDotPaint.setColor(mInnerColor);
-        mInnerDotPaint.setStyle(Paint.Style.FILL);
-        if (mOuterDotPaint == null) {
-            mOuterDotPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        }
-        mOuterDotPaint.setColor(mOuterColor);
-        mOuterDotPaint.setStyle(Paint.Style.FILL);
         invalidate();
     }
 
@@ -181,6 +179,14 @@ public class OnlineStatusAvatarView extends AppCompatImageView {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public void setOnlineStatus(int status) {
+        if (status == STATUS_ONLINE) {
+            mInnerColor = ONLINE_COLOR;
+        } else if (status == STATUS_OFFLINE) {
+            mInnerColor = OFFLINE_COLOR;
         }
     }
 }
