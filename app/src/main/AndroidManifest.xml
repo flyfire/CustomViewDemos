@@ -371,6 +371,13 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".androidtest.LooperTest"
+            android:label="ZDemoTest/HandlerTest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
