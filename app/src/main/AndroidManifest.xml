@@ -378,6 +378,13 @@
                 <category android:name="solarex.intent.category.customview"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.BubbleViewActivity"
+            android:label="ZDemoTest/BubbleViewTest">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="solarex.intent.category.customview"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
